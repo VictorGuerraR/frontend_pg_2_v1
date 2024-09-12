@@ -11,8 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router'; 
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { Subscription, filter } from 'rxjs';
 
@@ -43,8 +42,7 @@ export interface TopmenuState {
     MatIconModule,
     MatMenuModule,
     MatTabsModule,
-    NgxPermissionsModule,
-    TranslateModule,
+    NgxPermissionsModule, 
     TopmenuPanelComponent,
   ],
 })

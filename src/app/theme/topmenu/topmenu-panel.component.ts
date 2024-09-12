@@ -13,8 +13,7 @@ import {
 } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenu, MatMenuModule } from '@angular/material/menu';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router'; 
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { Subscription, filter } from 'rxjs';
 
@@ -32,8 +31,7 @@ import { TopmenuState } from './topmenu.component';
     RouterLinkActive,
     MatIconModule,
     MatMenuModule,
-    NgxPermissionsModule,
-    TranslateModule,
+    NgxPermissionsModule, 
   ],
 })
 export class TopmenuPanelComponent implements OnInit, OnDestroy {

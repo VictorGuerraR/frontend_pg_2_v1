@@ -7,7 +7,6 @@ import {
   inject,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateModule } from '@ngx-translate/core';
 
 import { MenuService } from '@core';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
@@ -21,7 +20,7 @@ import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
   },
   encapsulation: ViewEncapsulation.None,
   standalone: true,
-  imports: [BreadcrumbComponent, TranslateModule],
+  imports: [BreadcrumbComponent],
 })
 export class PageHeaderComponent implements OnInit {
   private readonly router = inject(Router);

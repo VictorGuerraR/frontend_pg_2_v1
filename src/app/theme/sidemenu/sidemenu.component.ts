@@ -1,5 +1,4 @@
-import { MenuService } from '@core';
-import { TranslateModule } from '@ngx-translate/core';
+import { MenuService } from '@core'; 
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
@@ -27,8 +26,7 @@ import { Input, inject, Component, ViewEncapsulation, ChangeDetectionStrategy } 
     RouterLinkActive,
     NgxPermissionsModule,
     MatIconModule,
-    MatRippleModule,
-    TranslateModule,
+    MatRippleModule, 
     NavAccordionDirective,
     NavAccordionItemDirective,
     NavAccordionToggleDirective,

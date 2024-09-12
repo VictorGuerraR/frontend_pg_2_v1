@@ -8,7 +8,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { Router, RouterLink } from '@angular/router';
 import { MtxButtonModule } from '@ng-matero/extensions/button';
-import { TranslateModule } from '@ngx-translate/core';
 import { filter } from 'rxjs/operators';
 
 import { AuthService } from '@core/authentication';
@@ -28,7 +27,6 @@ import { AuthService } from '@core/authentication';
     MatFormFieldModule,
     MatInputModule,
     MtxButtonModule,
-    TranslateModule,
   ],
 })
 export class LoginComponent {

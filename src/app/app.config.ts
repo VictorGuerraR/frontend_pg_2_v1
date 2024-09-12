@@ -7,9 +7,6 @@ import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { provideMomentDatetimeAdapter } from '@ng-matero/extensions-moment-adapter';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { NgProgressHttpModule } from 'ngx-progressbar/http';
 import { NgProgressRouterModule } from 'ngx-progressbar/router';
@@ -18,14 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BASE_URL, appInitializerProviders, httpInterceptorProviders } from '@core';
 import { environment } from '@env/environment';
 import { PaginatorI18nService } from '@shared';
-import { InMemDataService } from '@shared/in-mem/in-mem-data.service';
 import { routes } from './app.routes';
-import { FormlyConfigModule } from './formly-config.module';
-
-// Required for AOT compilation
-export function TranslateHttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, 'i18n/', '.json');
-}
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -41,19 +31,6 @@ export const appConfig: ApplicationConfig = {
       NgProgressRouterModule,
       NgxPermissionsModule.forRoot(),
       ToastrModule.forRoot(),
-      TranslateModule.forRoot({
-        loader: {
-          provide: TranslateLoader,
-          useFactory: TranslateHttpLoaderFactory,
-          deps: [HttpClient],
-        },
-      }),
-      FormlyConfigModule.forRoot(),
-      // 👇 ❌ This is only used for demo purpose, remove it in the realworld application
-      InMemoryWebApiModule.forRoot(InMemDataService, {
-        dataEncapsulation: false,
-        passThruUnknownUrl: true,
-      })
     ),
     { provide: BASE_URL, useValue: environment.baseUrl },
     httpInterceptorProviders,

@@ -80,9 +80,7 @@ function is(reqInfo: RequestInfo, path: string) {
   return new RegExp(`${path}(/)?$`, 'i').test(reqInfo.req.url);
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class InMemDataService implements InMemoryDbService {
   private users: User[] = [
     {

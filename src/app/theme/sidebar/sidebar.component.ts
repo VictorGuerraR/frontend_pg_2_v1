@@ -4,8 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { SidemenuComponent } from '../sidemenu/sidemenu.component';
-import { BrandingComponent } from '../widgets/branding.component';
+import { SidemenuComponent } from '../sidemenu/sidemenu.component'; 
 import { UserPanelComponent } from './user-panel.component';
 
 @Component({
@@ -18,8 +17,7 @@ import { UserPanelComponent } from './user-panel.component';
     MatSlideToggleModule,
     MatIconModule,
     MatButtonModule,
-    MatToolbarModule,
-    BrandingComponent,
+    MatToolbarModule, 
     SidemenuComponent,
     UserPanelComponent,
   ],

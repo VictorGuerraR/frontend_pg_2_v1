@@ -1,14 +1,8 @@
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import screenfull from 'screenfull';
-
-import { BrandingComponent } from '../widgets/branding.component';
-import { GithubButtonComponent } from '../widgets/github.component';
-import { NotificationComponent } from '../widgets/notification.component';
-import { TranslateComponent } from '../widgets/translate.component';
-import { UserComponent } from '../widgets/user.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -23,11 +17,6 @@ import { UserComponent } from '../widgets/user.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    BrandingComponent,
-    GithubButtonComponent,
-    NotificationComponent,
-    TranslateComponent,
-    UserComponent,
   ],
 })
 export class HeaderComponent {
