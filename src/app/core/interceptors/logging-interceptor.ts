@@ -2,11 +2,9 @@ import { HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angula
 import { Injectable, inject } from '@angular/core';
 import { finalize, tap } from 'rxjs';
 
-import { MessageService } from '@shared';
 
 @Injectable()
 export class LoggingInterceptor implements HttpInterceptor {
-  private readonly messenger = inject(MessageService);
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const started = Date.now();
@@ -24,7 +22,6 @@ export class LoggingInterceptor implements HttpInterceptor {
       finalize(() => {
         const elapsed = Date.now() - started;
         const msg = `${req.method} "${req.urlWithParams}" ${ok} in ${elapsed} ms.`;
-        this.messenger.add(msg);
       })
     );
   }

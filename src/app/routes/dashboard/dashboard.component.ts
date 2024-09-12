@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { BreadcrumbComponent } from '@shared';
-import { AppSettings, SettingsService } from '@core';
+import { SettingsService } from '@core';
 import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -70,7 +70,7 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
     this.updateCharts(this.settings.options);
   }
 
-  updateCharts(opts: Partial<AppSettings>) {
+  updateCharts(opts: Partial<any>) {
     this.chart1?.updateOptions({
       chart: {
         foreColor: opts.theme === 'dark' ? '#ccc' : '#333',

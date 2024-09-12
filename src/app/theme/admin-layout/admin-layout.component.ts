@@ -13,7 +13,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NgProgressComponent } from 'ngx-progressbar';
 import { Subscription, filter } from 'rxjs';
 
-import { AppSettings, SettingsService } from '@core';
+import { SettingsService } from '@core';
 import { CustomizerComponent } from '../customizer/customizer.component';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarNoticeComponent } from '../sidebar-notice/sidebar-notice.component';
@@ -131,10 +131,9 @@ export class AdminLayoutComponent implements OnDestroy {
     this.settings.setOptions(this.options);
   }
 
-  updateOptions(options: AppSettings) {
+  updateOptions(options: any) {
     this.options = options;
     this.settings.setOptions(options);
-    this.settings.setDirection();
     this.settings.setTheme();
   }
 }

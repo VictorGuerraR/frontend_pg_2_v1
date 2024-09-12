@@ -1,6 +1,3 @@
-export * from './settings';
-export * from './initializers';
-
 // Bootstrap
 export * from './bootstrap/menu.service';
 export * from './bootstrap/settings.service';

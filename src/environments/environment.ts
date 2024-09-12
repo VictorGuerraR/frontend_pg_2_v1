@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  baseUrl: '',
+  baseUrl: 'http://localhost:2500',
   useHash: false,
+  encriptionKey: 'asdjhsaua098a9ajskjd/5sdf7a&^&9'
 };
 
 /*

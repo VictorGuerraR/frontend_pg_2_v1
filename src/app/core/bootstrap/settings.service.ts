@@ -1,27 +1,20 @@
-import { MediaMatcher } from '@angular/cdk/layout';
-import { DOCUMENT } from '@angular/common';
-import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-import { AppDirectionality, LocalStorageService } from '@shared';
+import { DOCUMENT } from '@angular/common';
+import { MediaMatcher } from '@angular/cdk/layout';
+import { Injectable, inject } from '@angular/core';
 import { AppSettings, AppTheme, defaults } from '../settings';
+import { EncriptService } from '@services/tools/encript.service';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable({ providedIn: 'root' })
 export class SettingsService {
-  private readonly key = 'ng-matero-settings';
-
-  private readonly store = inject(LocalStorageService);
-  private readonly mediaMatcher = inject(MediaMatcher);
+  private readonly key = 'app-settings';
   private readonly document = inject(DOCUMENT);
-  private readonly dir = inject(AppDirectionality);
+  private readonly mediaMatcher = inject(MediaMatcher);
+  private readonly encriptServ = inject(EncriptService);
 
   private readonly notify$ = new BehaviorSubject<Partial<AppSettings>>({});
 
-  get notify() {
-    return this.notify$.asObservable();
-  }
+  get notify() { return this.notify$.asObservable(); }
 
   private htmlElement!: HTMLHtmlElement;
 
@@ -30,15 +23,13 @@ export class SettingsService {
   themeColor: Exclude<AppTheme, 'auto'> = 'light';
 
   constructor() {
-    const storedOptions = this.store.get(this.key);
+    const storedOptions = this.encriptServ.getSavedAndDecryptedData({ key: this.key, strategy: 'local' });
     this.options = Object.assign(defaults, storedOptions);
     this.themeColor = this.getThemeColor();
     this.htmlElement = this.document.querySelector('html')!;
   }
 
-  reset() {
-    this.store.remove(this.key);
-  }
+  reset() { this.encriptServ.deleteSavedData({ key: this.key, strategy: 'local' }); }
 
   getThemeColor() {
     // Check whether the browser support `prefers-color-scheme`
@@ -56,19 +47,14 @@ export class SettingsService {
 
   setOptions(options: AppSettings) {
     this.options = Object.assign(defaults, options);
-    this.store.set(this.key, this.options);
+    this.encriptServ.saveAndEncriptData({ key: this.key, strategy: 'local', data: this.options })
     this.notify$.next(this.options);
   }
 
   setLanguage(lang: string) {
     this.options.language = lang;
-    this.store.set(this.key, this.options);
+    this.encriptServ.saveAndEncriptData({ key: this.key, strategy: 'local', data: this.options })
     this.notify$.next(this.options);
-  }
-
-  setDirection() {
-    this.dir.value = this.options.dir;
-    this.htmlElement.dir = this.dir.value;
   }
 
   setTheme() {
@@ -79,5 +65,5 @@ export class SettingsService {
     } else {
       this.htmlElement.classList.remove('theme-dark');
     }
-  }
+  } 
 }

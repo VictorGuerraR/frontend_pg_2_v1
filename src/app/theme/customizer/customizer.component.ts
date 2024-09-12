@@ -17,7 +17,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MtxDrawer, MtxDrawerModule, MtxDrawerRef } from '@ng-matero/extensions/drawer';
 import { Subscription } from 'rxjs';
 
-import { AppSettings, SettingsService } from '@core';
+import { SettingsService } from '@core';
 import { DisableControlDirective } from '@shared';
 
 @Component({
@@ -41,13 +41,13 @@ import { DisableControlDirective } from '@shared';
   ],
 })
 export class CustomizerComponent {
-  @Output() optionsChange = new EventEmitter<AppSettings>();
+  @Output() optionsChange = new EventEmitter<any>();
 
   private readonly settings = inject(SettingsService);
   private readonly drawer = inject(MtxDrawer);
   private readonly fb = inject(FormBuilder);
 
-  form = this.fb.nonNullable.group<AppSettings>(this.settings.options);
+  form = this.fb.nonNullable.group<any>(this.settings.options);
 
   private formSubscription = Subscription.EMPTY;
 
@@ -97,7 +97,7 @@ export class CustomizerComponent {
     this.drawerRef?.dismiss();
   }
 
-  sendOptions(options: AppSettings) {
+  sendOptions(options: any) {
     this.optionsChange.emit(options);
   }
 }
