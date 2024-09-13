@@ -1,22 +1,14 @@
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnDestroy,
-  ViewEncapsulation,
-  inject,
-} from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
+import { Menu, MenuService } from '@core';
+import { Subscription, filter } from 'rxjs';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTabsModule } from '@angular/material/tabs';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router'; 
 import { NgxPermissionsModule } from 'ngx-permissions';
-import { Subscription, filter } from 'rxjs';
-
-import { Menu, MenuService } from '@core';
+import { MatButtonModule } from '@angular/material/button';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { TopmenuPanelComponent } from './topmenu-panel.component';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, ViewEncapsulation, inject, } from '@angular/core';
 
 export interface TopmenuState {
   active: boolean;
@@ -27,9 +19,7 @@ export interface TopmenuState {
   selector: 'app-topmenu',
   templateUrl: './topmenu.component.html',
   styleUrl: './topmenu.component.scss',
-  host: {
-    class: 'matero-topmenu',
-  },
+  host: { class: 'matero-topmenu' },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
@@ -42,7 +32,7 @@ export interface TopmenuState {
     MatIconModule,
     MatMenuModule,
     MatTabsModule,
-    NgxPermissionsModule, 
+    NgxPermissionsModule,
     TopmenuPanelComponent,
   ],
 })

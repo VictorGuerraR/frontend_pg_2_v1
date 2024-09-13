@@ -1,24 +1,24 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-  ViewEncapsulation,
-  inject,
-} from '@angular/core';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenu, MatMenuModule } from '@angular/material/menu';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router'; 
-import { NgxPermissionsModule } from 'ngx-permissions';
-import { Subscription, filter } from 'rxjs';
 
-import { MenuChildrenItem, MenuService } from '@core';
+import { Subscription, filter } from 'rxjs';
 import { TopmenuState } from './topmenu.component';
+import { MenuChildrenItem, MenuService } from '@core';
+import { MatIconModule } from '@angular/material/icon';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { MatMenu, MatMenuModule } from '@angular/material/menu';
+import { NavigationEnd, Router, RouterLink, RouterLinkActive } from '@angular/router';
+import {
+  Input,
+  OnInit,
+  inject,
+  Output,
+  Component,
+  OnDestroy,
+  ViewChild,
+  EventEmitter,
+  ChangeDetectorRef,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 
 @Component({
   selector: 'app-topmenu-panel',
@@ -31,7 +31,7 @@ import { TopmenuState } from './topmenu.component';
     RouterLinkActive,
     MatIconModule,
     MatMenuModule,
-    NgxPermissionsModule, 
+    NgxPermissionsModule,
   ],
 })
 export class TopmenuPanelComponent implements OnInit, OnDestroy {

@@ -9,7 +9,16 @@ import { LoginComponent } from './routes/sessions/login/login.component';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'auth',
+    component: AuthLayoutComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+    ],
+  },
+  { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
+  { path: '**', redirectTo: 'auth/login', pathMatch: 'full' },
+  {
+    path: 'sistema',
     component: AdminLayoutComponent,
     children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -21,14 +30,10 @@ export const routes: Routes = [
         path: 'utilities',
         loadChildren: () => import('./routes/utilities/utilities.routes').then(m => m.routes),
       },
+      {
+        path: 'herramientas',
+        loadChildren: () => import('./routes/utilities/utilities.routes').then(m => m.routes),
+      }
     ],
-  },
-  {
-    path: 'auth',
-    component: AuthLayoutComponent,
-    children: [
-      { path: 'login', component: LoginComponent },
-    ],
-  },
-  { path: '**', redirectTo: 'dashboard' },
+  }
 ];

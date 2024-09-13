@@ -51,11 +51,12 @@ export class LoginComponent {
       next: ({ token, usuario }) => {
         this.tokenServ.saveToken(token)
         this.loginServ.saveUser(usuario)
-        // Manejar la respuesta exitosa aquí
-        console.log('Login exitoso:', { token, usuario });
-        this.router.navigate(['']);
+        this.router.navigate(['sistema']);
       },
       error: (error) => {
+        this.tokenServ.deleteToken()
+        this.loginServ.deleteUser()
+        this.router.navigate(['']);
       }
     });
   }

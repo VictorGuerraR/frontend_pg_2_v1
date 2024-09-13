@@ -1,4 +1,4 @@
-import { MenuService } from '@core'; 
+import { MenuService, Menu } from '@core';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
@@ -8,7 +8,7 @@ import { AsyncPipe, NgTemplateOutlet, SlicePipe } from '@angular/common';
 import { NavAccordionItemDirective } from './nav-accordion-item.directive';
 import { NavAccordionToggleDirective } from './nav-accordion-toggle.directive';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Input, inject, Component, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Input, inject, Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit } from '@angular/core';
 
 
 @Component({
@@ -26,7 +26,7 @@ import { Input, inject, Component, ViewEncapsulation, ChangeDetectionStrategy } 
     RouterLinkActive,
     NgxPermissionsModule,
     MatIconModule,
-    MatRippleModule, 
+    MatRippleModule,
     NavAccordionDirective,
     NavAccordionItemDirective,
     NavAccordionToggleDirective,
@@ -42,13 +42,28 @@ import { Input, inject, Component, ViewEncapsulation, ChangeDetectionStrategy } 
     ]),
   ],
 })
-export class SidemenuComponent {
-  // The ripple effect makes page flashing on mobile
+export class SidemenuComponent implements OnInit {
   @Input() ripple = false;
+  private readonly menuService = inject(MenuService);
 
-  private readonly menu = inject(MenuService);
+  menu: Menu[] = [
+    {
+      route: 'dashboard',
+      name: 'Inicio',
+      type: 'link',
+      icon: 'dashboard'
+    },
+    {
+      route: 'design',
+      name: 'Herramientas',
+      type: 'link',
+      icon: 'construction'
+    }
+  ];
 
-  menu$ = this.menu.getAll();
+  menu$ = this.menuService.getAll();
 
-  buildRoute = this.menu.buildRoute;
+  ngOnInit(): void { this.menuService.set(this.menu); }
+
+  buildRoute = this.menuService.buildRoute;
 }
