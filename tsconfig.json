@@ -45,17 +45,14 @@
       "@theme/*": [
         "app/theme/*"
       ],
-      "@testing": [
-        "testing"
-      ],
-      "@testing/*": [
-        "testing/*"
-      ],
       "@env": [
         "environments"
       ],
       "@env/*": [
         "environments/*"
+      ],
+      "@routes/*": [
+        "app/routes/*"
       ]
     },
     "useDefineForClassFields": false,

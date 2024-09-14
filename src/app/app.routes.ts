@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { AdminLayoutComponent } from '@theme/admin-layout/admin-layout.component';
 import { AuthLayoutComponent } from '@theme/auth-layout/auth-layout.component';
-import { DashboardComponent } from './routes/dashboard/dashboard.component';
-import { Error403Component } from './routes/sessions/403.component';
-import { Error404Component } from './routes/sessions/404.component';
-import { Error500Component } from './routes/sessions/500.component';
-import { LoginComponent } from './routes/sessions/login/login.component';
+import { DashboardComponent } from '@routes/dashboard/dashboard.component';
+import { Error403Component } from '@routes/sessions/403.component';
+import { Error404Component } from '@routes/sessions/404.component';
+import { Error500Component } from '@routes/sessions/500.component';
+import { LoginComponent } from '@routes/sessions/login/login.component';
 
 export const routes: Routes = [
   {
@@ -28,11 +28,27 @@ export const routes: Routes = [
       { path: '500', component: Error500Component },
       {
         path: 'utilities',
-        loadChildren: () => import('./routes/utilities/utilities.routes').then(m => m.routes),
+        loadChildren: () => import('@routes/utilities/utilities.routes').then(m => m.routes),
       },
       {
         path: 'herramientas',
-        loadChildren: () => import('./routes/utilities/utilities.routes').then(m => m.routes),
+        loadChildren: () => import('@routes/herramientas/herramientas-routing.module').then(m => m.routes),
+      },
+      {
+        path: 'costos-fijos',
+        loadChildren: () => import('@routes/costos-fijos/costos-fijos-routing.module').then(m => m.routes)
+      },
+      {
+        path: 'materias-primas',
+        loadChildren: () => import('@routes/materias-primas/materias-primas-routing.module').then(m => m.routes)
+      },
+      {
+        path: 'registros',
+        loadChildren: () => import('@routes/registros/registros-routing.module').then(m => m.routes)
+      },
+      {
+        path: 'usuarios',
+        loadChildren: () => import('@routes/usuarios/usuarios-routing.module').then(m => m.routes)
       }
     ],
   }
