@@ -3,12 +3,16 @@ import { NgxPermissionsModule } from 'ngx-permissions';
 import { MatIconModule } from '@angular/material/icon';
 import { MatRippleModule } from '@angular/material/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { NavAccordionDirective } from './nav-accordion.directive';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AsyncPipe, NgTemplateOutlet, SlicePipe } from '@angular/common';
 import { NavAccordionItemDirective } from './nav-accordion-item.directive';
 import { NavAccordionToggleDirective } from './nav-accordion-toggle.directive';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Input, inject, Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { faDashboard, faWrench, faCogs, faDollarSign, faReceipt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
+
 
 
 @Component({
@@ -29,6 +33,7 @@ import { Input, inject, Component, ViewEncapsulation, ChangeDetectionStrategy, O
     MatRippleModule,
     NavAccordionDirective,
     NavAccordionItemDirective,
+    FontAwesomeModule,
     NavAccordionToggleDirective,
   ],
   animations: [
@@ -51,15 +56,53 @@ export class SidemenuComponent implements OnInit {
       route: 'dashboard',
       name: 'Inicio',
       type: 'link',
-      icon: 'dashboard'
+      icon: ['fas', 'dashboard'] // Cambia 'icon' por el formato que necesita FontAwesome
     },
     {
-      route: 'design',
+      route: 'herramientas',
       name: 'Herramientas',
       type: 'link',
-      icon: 'construction'
-    }
+      icon: ['fas', 'wrench']
+    },
+    {
+      route: 'materias-primas',
+      name: 'Materias Primas',
+      type: 'link',
+      icon: ['fas', 'cogs']
+    },
+    {
+      route: 'costos-fijos',
+      name: 'Costos Fijos',
+      type: 'link',
+      icon: ['fas', 'dollar-sign']
+    },
+    {
+      route: 'registros',
+      name: 'Registros',
+      type: 'link',
+      icon: ['fas', 'receipt']
+    },
+    {
+      route: 'usuarios',
+      name: 'Usuarios',
+      type: 'link',
+      icon: ['fas', 'user-circle']
+    },
   ];
+
+  constructor(
+    private library: FaIconLibrary
+  ) {
+    this.library.addIcons(
+      faDashboard,
+      faWrench,
+      faCogs,
+      faDollarSign,
+      faReceipt,
+      faUserCircle
+    );
+  }
+
 
   menu$ = this.menuService.getAll();
 

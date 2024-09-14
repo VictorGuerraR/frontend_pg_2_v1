@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { LoginService, TokenService } from '@core/authentication'
 import { Router, RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MtxButtonModule } from '@ng-matero/extensions/button';
+import { LoginService, TokenService } from '@core/authentication';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -36,8 +36,8 @@ export class LoginComponent {
   isSubmitting = false;
 
   loginForm = this.fb.nonNullable.group({
-    username: [, [Validators.required]],
-    password: [, [Validators.required]]
+    username: ['victor.guerra', [Validators.required]],
+    password: ['test', [Validators.required]]
   });
 
   get username() { return this.loginForm.get('username')!; }
@@ -51,7 +51,7 @@ export class LoginComponent {
       next: ({ token, usuario }) => {
         this.tokenServ.saveToken(token)
         this.loginServ.saveUser(usuario)
-        this.router.navigate(['sistema']);
+        this.router.navigate(['sistema']).then((res) => console.log(res));
       },
       error: (error) => {
         this.tokenServ.deleteToken()
