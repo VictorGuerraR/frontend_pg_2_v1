@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-detalle-registros',
+  selector: 'detalle-registros',
   standalone: true,
   imports: [],
   templateUrl: './detalle-registros.component.html',

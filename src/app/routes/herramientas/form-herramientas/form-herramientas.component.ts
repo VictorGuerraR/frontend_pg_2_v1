@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-form-herramientas',
+  selector: 'form-herramientas',
   standalone: true,
   imports: [],
   templateUrl: './form-herramientas.component.html',

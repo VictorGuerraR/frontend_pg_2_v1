@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ErrorCodeComponent } from '@shared/components/error-code/error-code.component';
 
 @Component({
-  selector: 'app-error-404',
+  selector: 'error-404',
   template: `
     <error-code
       code="404"

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-form-registros',
+  selector: 'form-registros',
   standalone: true,
   imports: [],
   templateUrl: './form-registros.component.html',

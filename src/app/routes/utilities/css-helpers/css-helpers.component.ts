@@ -6,7 +6,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { PageHeaderComponent } from '@shared';
 
 @Component({
-  selector: 'app-utilities-css-helpers',
+  selector: 'utilities-css-helpers',
   templateUrl: './css-helpers.component.html',
   styleUrl: './css-helpers.component.scss',
   standalone: true,

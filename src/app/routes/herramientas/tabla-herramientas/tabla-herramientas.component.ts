@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-tabla-herramientas',
+  selector: 'tabla-herramientas',
   standalone: true,
   imports: [],
   templateUrl: './tabla-herramientas.component.html',

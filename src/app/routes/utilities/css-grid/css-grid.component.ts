@@ -5,7 +5,7 @@ import { RouterLink } from '@angular/router';
 import { PageHeaderComponent } from '@shared';
 
 @Component({
-  selector: 'app-utilities-css-grid',
+  selector: 'utilities-css-grid',
   templateUrl: './css-grid.component.html',
   styleUrl: './css-grid.component.scss',
   standalone: true,

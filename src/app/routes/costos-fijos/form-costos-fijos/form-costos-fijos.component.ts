@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-form-costos-fijos',
+  selector: 'form-costos-fijos',
   standalone: true,
   imports: [],
   templateUrl: './form-costos-fijos.component.html',

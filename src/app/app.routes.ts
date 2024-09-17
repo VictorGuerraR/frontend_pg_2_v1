@@ -34,23 +34,23 @@ export const routes: Routes = [
       },
       {
         path: 'herramientas',
-        loadChildren: () => import('@routes/herramientas/herramientas-routing.module').then(m => m.routes),
+        loadChildren: () => import('@routes/herramientas/herramientas-routes').then(m => m.routes),
       },
       {
         path: 'costos-fijos',
-        loadChildren: () => import('@routes/costos-fijos/costos-fijos-routing.module').then(m => m.routes)
+        loadChildren: () => import('@routes/costos-fijos/costos-fijos-routes').then(m => m.routes)
       },
       {
         path: 'materias-primas',
-        loadChildren: () => import('@routes/materias-primas/materias-primas-routing.module').then(m => m.routes)
+        loadChildren: () => import('@routes/materias-primas/materias-primas-routes').then(m => m.routes)
       },
       {
         path: 'registros',
-        loadChildren: () => import('@routes/registros/registros-routing.module').then(m => m.routes)
+        loadChildren: () => import('@routes/registros/registros-routes').then(m => m.routes)
       },
       {
         path: 'usuarios',
-        loadChildren: () => import('@routes/usuarios/usuarios-routing.module').then(m => m.routes)
+        loadChildren: () => import('@routes/usuarios/usuarios-routes').then(m => m.routes)
       }
     ],
   }
