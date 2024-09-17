@@ -24,6 +24,9 @@
       "dom"
     ],
     "paths": {
+      "@servicesTools/tools": [
+        "app/core/services/tools/"
+      ],
       "@services/*": [
         "app/core/services/*"
       ],
