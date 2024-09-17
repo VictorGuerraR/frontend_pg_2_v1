@@ -1,0 +1,5 @@
+export * from './costos-fijos/costos-fijos.service'
+export * from './herramientas/herramientas.service'
+export * from './materias-primas/materias-primas.service'
+export * from './registros/registros.service'
+export * from './usuarios/usuarios.service'

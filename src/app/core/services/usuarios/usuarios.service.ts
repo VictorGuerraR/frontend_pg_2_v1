@@ -5,7 +5,7 @@ import { PeticionesHttpsService } from '@servicesTools/tools'
 @Injectable({ providedIn: 'root' })
 export class UsuariosService {
 
-  endpointUsuarios = {
+  private endpointUsuarios = {
     post: '/loggin-create',
     patch: '/loggin-update',
     delete: '/loggin-inactive',

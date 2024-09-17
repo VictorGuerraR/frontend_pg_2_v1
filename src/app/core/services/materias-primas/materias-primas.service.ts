@@ -7,7 +7,7 @@ import { PeticionesHttpsService } from '@servicesTools/tools'
 })
 export class MateriasPrimasService {
 
-  endpointHerramientas = {
+  private endpointHerramientas = {
     get: '/materias-primas',
     post: '/materias-primas',
     patch: '/materias-primas',

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'tabla-costos-fijos',
@@ -7,6 +7,12 @@ import { Component } from '@angular/core';
   templateUrl: './tabla-costos-fijos.component.html',
   styles: ``
 })
-export class TablaCostosFijosComponent {
+export class TablaCostosFijosComponent implements OnInit {
+
+  ngOnInit(): void {
+    console.log(this.data)
+  }
+
+  @Input({ required: true, alias: 'costos-fijos' }) data: any = []
 
 }

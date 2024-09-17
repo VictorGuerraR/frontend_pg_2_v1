@@ -5,7 +5,7 @@ import { PeticionesHttpsService } from '@servicesTools/tools'
 @Injectable({ providedIn: 'root' })
 export class HerramientasService {
 
-  endpointHerramientas = {
+  private endpointHerramientas = {
     get: '/herramientas',
     post: '/crear-herramienta',
     patch: '/actualizar-herramienta',

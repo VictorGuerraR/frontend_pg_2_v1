@@ -30,6 +30,9 @@
       "@services/*": [
         "app/core/services/*"
       ],
+      "@services": [
+        "app/core/services"
+      ],
       "@core": [
         "app/core"
       ],
