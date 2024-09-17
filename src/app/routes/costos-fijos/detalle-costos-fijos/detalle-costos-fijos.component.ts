@@ -19,7 +19,7 @@ export class DetalleCostosFijosComponent implements OnInit {
   ngOnInit(): void { this.solicitarInformacion() }
 
   async solicitarInformacion(params = {}) {
-    this.costosfijos = await this.costoFijosServ.obtenerCostosFijos(params)
+    await this.costoFijosServ.obtenerCostosFijos(params).then(({ respuesta }: any) => this.costosfijos = respuesta)
     console.log(this.costosfijos)
   }
 

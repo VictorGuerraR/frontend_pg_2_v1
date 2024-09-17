@@ -1,18 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { TableModule } from 'primeng/table';
+import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'tabla-costos-fijos',
   standalone: true,
-  imports: [],
+  imports: [
+    TableModule,
+    CommonModule
+  ],
   templateUrl: './tabla-costos-fijos.component.html',
   styles: ``
 })
-export class TablaCostosFijosComponent implements OnInit {
-
-  ngOnInit(): void {
-    console.log(this.data)
-  }
+export class TablaCostosFijosComponent {
 
   @Input({ required: true, alias: 'costos-fijos' }) data: any = []
+
 
 }
