@@ -1,13 +1,18 @@
 import { TableModule } from 'primeng/table';
-import { Component, Input } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'tabla-costos-fijos',
   standalone: true,
   imports: [
     TableModule,
-    CommonModule
+    CommonModule,
+    ButtonModule,
+    FontAwesomeModule
   ],
   templateUrl: './tabla-costos-fijos.component.html',
   styles: ``
@@ -15,6 +20,10 @@ import { CommonModule } from '@angular/common';
 export class TablaCostosFijosComponent {
 
   @Input({ required: true, alias: 'costos-fijos' }) data: any = []
+  @Output() vista: EventEmitter<any> = new EventEmitter();
+  @Output() editar: EventEmitter<any> = new EventEmitter();
+  @Output() eliminar: EventEmitter<any> = new EventEmitter();
 
+  constructor(library: FaIconLibrary) { library.addIcons(faEdit, faTrashAlt, faEye); }
 
 }
