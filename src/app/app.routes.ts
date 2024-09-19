@@ -30,26 +30,32 @@ export const routes: Routes = [
       { path: '500', component: Error500Component },
       {
         path: 'utilities',
+        canActivate: [AuthGuard],
         loadChildren: () => import('@routes/utilities/utilities.routes').then(m => m.routes),
       },
       {
         path: 'herramientas',
+        canActivate: [AuthGuard],
         loadChildren: () => import('@routes/herramientas/herramientas-routes').then(m => m.routes),
       },
       {
         path: 'costos-fijos',
+        canActivate: [AuthGuard],
         loadChildren: () => import('@routes/costos-fijos/costos-fijos-routes').then(m => m.routes)
       },
       {
         path: 'materias-primas',
+        canActivate: [AuthGuard],
         loadChildren: () => import('@routes/materias-primas/materias-primas-routes').then(m => m.routes)
       },
       {
         path: 'registros',
+        canActivate: [AuthGuard],
         loadChildren: () => import('@routes/registros/registros-routes').then(m => m.routes)
       },
       {
         path: 'usuarios',
+        canActivate: [AuthGuard],
         loadChildren: () => import('@routes/usuarios/usuarios-routes').then(m => m.routes)
       }
     ],

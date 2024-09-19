@@ -67,7 +67,7 @@ export class EncriptService {
 
     if (currentDate.isAfter(expiredDate)) {
       this.storageStrategies[strategy].delete(key);
-      this.router.navigate(['/']);
+      this.router.navigate(['/auth/login']);
       return null;
     }
 

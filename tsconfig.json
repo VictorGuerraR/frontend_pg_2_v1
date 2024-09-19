@@ -24,20 +24,32 @@
       "dom"
     ],
     "paths": {
-      "@servicesTools/tools": [
-        "app/core/services/tools/"
-      ],
-      "@services/*": [
-        "app/core/services/*"
-      ],
-      "@services": [
-        "app/core/services"
-      ],
       "@core": [
         "app/core"
       ],
       "@core/*": [
         "app/core/*"
+      ],
+      "@env": [
+        "environments"
+      ],
+      "@env/*": [
+        "environments/*"
+      ],
+      "@interfaces/*": [
+        "app/shared/interfaces/*"
+      ],
+      "@routes/*": [
+        "app/routes/*"
+      ],
+      "@services": [
+        "app/core/services"
+      ],
+      "@services/*": [
+        "app/core/services/*"
+      ],
+      "@servicesTools/tools": [
+        "app/core/services/tools/"
       ],
       "@shared": [
         "app/shared"
@@ -50,15 +62,6 @@
       ],
       "@theme/*": [
         "app/theme/*"
-      ],
-      "@env": [
-        "environments"
-      ],
-      "@env/*": [
-        "environments/*"
-      ],
-      "@routes/*": [
-        "app/routes/*"
       ]
     },
     "useDefineForClassFields": false,

@@ -1,8 +1,8 @@
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 @Component({

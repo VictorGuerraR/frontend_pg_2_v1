@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { PeticionesHttpsService } from '@servicesTools/tools'
+import { Paginacion } from '@interfaces/pagination'
 
 @Injectable({ providedIn: 'root' })
 export class CostosFijosService {
@@ -18,7 +19,7 @@ export class CostosFijosService {
   ) { }
 
   obtenerCostosFijos(params: any) {
-    return this.peticionesHttpsServ.httpsGet(this.endpointCostosFijos['get'], params)
+    return this.peticionesHttpsServ.httpsGet<Paginacion<any>>(this.endpointCostosFijos['get'], params)
   }
 
   crearCostosFijos(costoFijo: any) {
