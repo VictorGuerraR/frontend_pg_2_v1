@@ -59,11 +59,16 @@ export class SettingsService {
 
   setTheme() {
     this.themeColor = this.getThemeColor();
-
+  
+    const themeLink = this.document.getElementById('app-theme') as HTMLLinkElement;
+  
     if (this.themeColor === 'dark') {
+      themeLink.href = 'lara-dark.css';
       this.htmlElement.classList.add('theme-dark');
     } else {
+      themeLink.href = 'lara-light.css';
       this.htmlElement.classList.remove('theme-dark');
     }
-  } 
+  }
+  
 }
