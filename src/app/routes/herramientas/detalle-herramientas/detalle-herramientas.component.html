@@ -1,1 +1,14 @@
-<p>detalle-herramientas works!</p>
+<div class="flex flex-column gap-8">
+    <toolbar>
+      <span>Registros de Costos Fijos</span>
+    </toolbar>
+    
+    <tabla-herramientas [data-tabla]="herramientas"></tabla-herramientas>
+    
+    <p-paginator 
+      (onPageChange)="handlePagination($event)" 
+      [rows]="paginationConfigurations.pageLimit"
+      [totalRecords]="paginationConfigurations.totalRecords"
+      [rowsPerPageOptions]="paginationConfigurations.rowsPerPageOptions"
+    ></p-paginator>
+  </div>

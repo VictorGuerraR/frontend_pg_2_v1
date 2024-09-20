@@ -15,19 +15,17 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
     FontAwesomeModule
   ],
   templateUrl: './tabla-costos-fijos.component.html',
-  styles: [
-    `
+  styles: [ `
     .custom-button {
       height: 30px;
       width: 46px;
       justify-content: center;
     }
-  `
-  ]
+  `]
 })
 export class TablaCostosFijosComponent {
 
-  @Input({ required: true, alias: 'costos-fijos' }) data: any = []
+  @Input({ required: true, alias: 'data-tabla' }) data: any = []
   @Output() vista: EventEmitter<any> = new EventEmitter();
   @Output() editar: EventEmitter<any> = new EventEmitter();
   @Output() eliminar: EventEmitter<any> = new EventEmitter();
