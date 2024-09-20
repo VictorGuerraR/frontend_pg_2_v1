@@ -81,13 +81,7 @@ export class SidemenuComponent implements OnInit {
       name: 'Registros',
       type: 'link',
       icon: ['fas', 'receipt']
-    },
-    {
-      route: 'usuarios',
-      name: 'Usuarios',
-      type: 'link',
-      icon: ['fas', 'user-circle']
-    },
+    }
   ];
 
   constructor(

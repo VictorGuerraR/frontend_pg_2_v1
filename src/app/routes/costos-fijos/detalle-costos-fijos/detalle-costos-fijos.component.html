@@ -3,16 +3,26 @@
 
 
 <div class="flex flex-column gap-8">
-  <toolbar>
-    <span>Registros de Costos Fijos</span>
+  <toolbar [titulo]="'Registros de Costos Fijos'" (agregar)="nuevoFlag=true">
   </toolbar>
-  
-  <tabla-costos-fijos [data-tabla]="costosfijos"></tabla-costos-fijos>
-  
-  <p-paginator 
-    (onPageChange)="handlePagination($event)" 
-    [rows]="paginationConfigurations.pageLimit"
+
+  <tabla-costos-fijos [data-tabla]="costosfijos" (editar)="edicion($event)" (eliminar)="eliminacion($event)"
+    (vista)="vista($event)"></tabla-costos-fijos>
+
+  <p-paginator (onPageChange)="handlePagination($event)" [rows]="paginationConfigurations.pageLimit"
     [totalRecords]="paginationConfigurations.totalRecords"
-    [rowsPerPageOptions]="paginationConfigurations.rowsPerPageOptions"
-  ></p-paginator>
+    [rowsPerPageOptions]="paginationConfigurations.rowsPerPageOptions">
+  </p-paginator>
 </div>
+
+
+<p-dialog header="Creación" [modal]="true" [(visible)]="nuevoFlag" [style]="{ width: '25rem' }"
+  (onHide)="nuevoFlag=false">
+  <form-costos-fijos />
+</p-dialog>
+
+
+<p-dialog header="Edición" [modal]="true" [(visible)]="edicionFlag" [style]="{ width: '25rem' }"
+  (onHide)="edicionFlag=false">
+  <form-costos-fijos />
+</p-dialog>

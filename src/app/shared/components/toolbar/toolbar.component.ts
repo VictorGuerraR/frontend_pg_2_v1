@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Location } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
-import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
 @Component({
@@ -17,13 +17,16 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
   styles: ''
 })
 export class ToolbarComponent {
-  faArrowLeft = faArrowLeft; 
-  
+  faArrowLeft = faArrowLeft;
+  faPlus = faPlus;
+  @Input({ required: true }) titulo: any = []
+  @Output() agregar: EventEmitter<any> = new EventEmitter();
+
   constructor(
     library: FaIconLibrary,
     private location: Location,
   ) {
-    library.addIcons(faArrowLeft);
+    library.addIcons(faArrowLeft, faPlus);
   }
 
   returnUrl() { this.location.back(); }

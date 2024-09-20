@@ -1,12 +1,14 @@
 <p-toolbar>
-  <ng-template pTemplate="center">
+  <div class="p-toolbar-group-start">
+    <b>{{titulo}}</b>
+  </div>
+  <div class="p-toolbar-group-end flex flex-row gap-8">
     <ng-content></ng-content>
-  </ng-template>
-  <ng-template pTemplate="end">
-    <div class="p-toolbar-group-end">
-      <button pButton style="height: 30px;" title="Regresar" (click)="returnUrl()">
-        <fa-icon [icon]="faArrowLeft"></fa-icon>
-      </button>
-    </div>
-  </ng-template>
+    <button pButton style="height: 30px;" title="Agregar" (click)="agregar.emit(true)">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+    <button pButton style="height: 30px;" title="Regresar" (click)="returnUrl()">
+      <fa-icon [icon]="faArrowLeft"></fa-icon>
+    </button>
+  </div>
 </p-toolbar>

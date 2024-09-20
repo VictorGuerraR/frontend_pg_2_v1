@@ -1,4 +1,6 @@
 import { CostosFijosService } from '@services'
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { Component, inject, OnInit } from '@angular/core';
 import { ToolbarComponent } from "@shared/components/toolbar/toolbar.component";
@@ -9,22 +11,31 @@ import { TablaCostosFijosComponent } from "../tabla-costos-fijos/tabla-costos-fi
 @Component({
   selector: 'detalle-costos-fijos',
   standalone: true,
-  imports: [PaginatorModule, FormCostosFijosComponent, TablaCostosFijosComponent, ToolbarComponent],
+  imports: [
+    PaginatorModule,
+    FormCostosFijosComponent,
+    TablaCostosFijosComponent,
+    ToolbarComponent,
+    DialogModule,
+    ButtonModule
+  ],
   templateUrl: './detalle-costos-fijos.component.html',
   styles: ``
 })
 export class DetalleCostosFijosComponent implements OnInit {
-
   private readonly costoFijosServ = inject(CostosFijosService);
+
   paginacion: any;
+  costosfijos: any;
+  costofijoSeleccionado: any;
+  nuevoFlag: boolean = false
+  edicionFlag: boolean = false
 
   paginationConfigurations: PaginationConfigurations = {
     pageLimit: 10,
     totalRecords: 0,
     rowsPerPageOptions: [10, 20, 30]
   }
-
-  costosfijos: any
 
   ngOnInit(): void { this.solicitarInformacion() }
 
@@ -45,4 +56,8 @@ export class DetalleCostosFijosComponent implements OnInit {
     page += 1
     await this.solicitarInformacion({ page, limit })
   }
+
+  edicion(data:any){}
+  vista(data:any){}
+  eliminacion(data:any){}
 }
