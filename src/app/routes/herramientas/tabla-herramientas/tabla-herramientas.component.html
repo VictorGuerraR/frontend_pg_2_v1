@@ -1,46 +1,62 @@
-<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
-    <ng-template pTemplate="header">
-      <tr>
-        <th pSortableColumn="fecha_creacion">
-          Fecha Creación <p-sortIcon field="fecha_creacion" />
-        </th>
-        <th pSortableColumn="usuario_creacion">
-          Creado por <p-sortIcon field="usuario_creacion" />
-  
-        </th>
-        <th pSortableColumn="codigo_moneda">
-          Moneda <p-sortIcon field="codigo_moneda" />
-        </th>
-        <th pSortableColumn="monto_total">
-          Monto <p-sortIcon field="monto_total" />
-        </th>
-        <th alignFrozen="right" pFrozenColumn>
-          Opciones
-        </th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-costos>
-      <tr>
-        <td>{{ costos.fecha_creacion | date:'dd/MM/yyyy'}}</td>
-        <td>{{ costos.usuario_creacion }}</td>
-        <td>{{ costos.codigo_moneda }}</td>
-        <td alignFrozen="right" pFrozenColumn>{{ costos.monto_total }}</td>
-        <td class="justify-content-center" style="display: flex; gap: 0.5rem;">
-          <button pButton class="custom-button" title="Visualización" severity="info" (click)="vista.emit(costos)">
-            <fa-icon [icon]="['fas', 'eye']"></fa-icon>
-          </button>
-          <button pButton class="custom-button" title="Edición" severity="warning" (click)="editar.emit(costos)">
-            <fa-icon [icon]="['fas', 'edit']"></fa-icon>
-          </button>
-          <button pButton class="custom-button" title="Eliminación" severity="danger" (click)="eliminar.emit(costos)">
-            <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
-          </button>
-        </td>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="emptymessage">
-      <tr>
-        <td colspan="7">No se encontraron registros.</td>
-      </tr>
-    </ng-template>
-  </p-table>
+<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }"
+  styleClass="p-datatable-striped white-space-nowrap text-overflow-ellipsis">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="fecha_creacion">
+        Fecha Creación <p-sortIcon field="fecha_creacion" />
+      </th>
+      <th pSortableColumn="usuario_creacion">
+        Creado por <p-sortIcon field="usuario_creacion" />
+      </th>
+      <th pSortableColumn="usuario_responsable">
+        Responsable de Herramienta <p-sortIcon field="usuario_responsable" />
+      </th>
+      <th pSortableColumn="descripcion">
+        Descripción <p-sortIcon field="descripcion" />
+      </th>
+      <th pSortableColumn="tipo_depreciacion" style="max-width: 15vw;" class="overflow-hidden">
+        Tipo de herramienta <p-sortIcon field="tipo_depreciacion" />
+      </th>
+      <th pSortableColumn="tiempo_en_uso">
+        Tiempo de Uso<p-sortIcon field="tiempo_en_uso" />
+      </th>
+      <th pSortableColumn="codigo_moneda">
+        Moneda <p-sortIcon field="codigo_moneda" />
+      </th>
+      <th pSortableColumn="monto">
+        Valor de la Herramienta <p-sortIcon field="monto" />
+      </th>
+      <th alignFrozen="right" pFrozenColumn>
+        Opciones
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+      <td>{{ data.fecha_creacion | date:'dd/MM/yyyy'}}</td>
+      <td>{{ data.usuario_creacion }}</td>
+      <td>{{ data.usuario_responsable }}</td>
+      <td>{{ data.descripcion }}</td>
+      <td style="max-width: 15vw;" class="overflow-hidden">{{ data.tipo_depreciacion }}</td>
+      <td>{{ data.tiempo_en_uso }}</td>
+      <td>{{ data.codigo_moneda }}</td>
+      <td>{{ data.monto | number: '1.2-2'}}</td>
+      <td alignFrozen="right" pFrozenColumn class="justify-content-center" style="display: flex; gap: 0.5rem;">
+        <button pButton class="custom-button" title="Visualización" severity="info" (click)="vista.emit(data)">
+          <fa-icon [icon]="['fas', 'eye']"></fa-icon>
+        </button>
+        <button pButton class="custom-button" title="Edición" severity="warning" (click)="editar.emit(data)">
+          <fa-icon [icon]="['fas', 'edit']"></fa-icon>
+        </button>
+        <button pButton class="custom-button" title="Eliminación" severity="danger" (click)="eliminar.emit(data)">
+          <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="7">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>
