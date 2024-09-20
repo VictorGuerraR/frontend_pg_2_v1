@@ -1,9 +1,18 @@
 <!-- <p>detalle-costos-fijos works!</p>
 <form-costos-fijos></form-costos-fijos> -->
-<tabla-costos-fijos [costos-fijos]="costosfijos" />
-<p-paginator 
-  (onPageChange)="handlePagination($event)" 
-  [rows]="paginationConfigurations.pageLimit"
-  [totalRecords]="paginationConfigurations.totalRecords"
-  [rowsPerPageOptions]="paginationConfigurations.rowsPerPageOptions"
-></p-paginator>
+
+
+<div class="flex flex-column gap-8">
+  <toolbar>
+    <span>Registros de Costos Fijos</span>
+  </toolbar>
+  
+  <tabla-costos-fijos [costos-fijos]="costosfijos"></tabla-costos-fijos>
+  
+  <p-paginator 
+    (onPageChange)="handlePagination($event)" 
+    [rows]="paginationConfigurations.pageLimit"
+    [totalRecords]="paginationConfigurations.totalRecords"
+    [rowsPerPageOptions]="paginationConfigurations.rowsPerPageOptions"
+  ></p-paginator>
+</div>

@@ -15,7 +15,15 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
     FontAwesomeModule
   ],
   templateUrl: './tabla-costos-fijos.component.html',
-  styles: ``
+  styles: [
+    `
+    .custom-button {
+      height: 30px;
+      width: 46px;
+      justify-content: center;
+    }
+  `
+  ]
 })
 export class TablaCostosFijosComponent {
 

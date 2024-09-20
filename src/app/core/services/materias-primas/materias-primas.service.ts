@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Paginacion } from '@interfaces/pagination'
 import { PeticionesHttpsService } from '@servicesTools/tools'
 
 @Injectable({
@@ -20,7 +21,7 @@ export class MateriasPrimasService {
   ) { }
 
   obtenerHerramientas(params: any) {
-    return this.peticionesHttpsServ.httpsGet(this.endpointHerramientas['get'], params)
+    return this.peticionesHttpsServ.httpsGet<Paginacion<any>>(this.endpointHerramientas['get'], params)
   }
 
   crearHerramientas(herramienta: any) {

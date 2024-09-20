@@ -1,0 +1,12 @@
+<p-toolbar>
+  <ng-template pTemplate="center">
+    <ng-content></ng-content>
+  </ng-template>
+  <ng-template pTemplate="end">
+    <div class="p-toolbar-group-end">
+      <button pButton style="height: 30px;" title="Regresar" (click)="returnUrl()">
+        <fa-icon [icon]="faArrowLeft"></fa-icon>
+      </button>
+    </div>
+  </ng-template>
+</p-toolbar>

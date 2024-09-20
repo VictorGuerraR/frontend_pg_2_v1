@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { Paginacion } from '@interfaces/pagination'
 import { PeticionesHttpsService } from '@servicesTools/tools'
 
 @Injectable({ providedIn: 'root' })
@@ -7,9 +8,9 @@ export class HerramientasService {
 
   private endpointHerramientas = {
     get: '/herramientas',
-    post: '/crear-herramienta',
-    patch: '/actualizar-herramienta',
-    delete: '/desactivar-herramienta'
+    post: '/herramientas',
+    patch: '/herramientas',
+    delete: '/herramientas'
   }
 
   constructor(
@@ -18,7 +19,7 @@ export class HerramientasService {
   ) { }
 
   obtenerHerramientas(params: any) {
-    return this.peticionesHttpsServ.httpsGet(this.endpointHerramientas['get'], params)
+    return this.peticionesHttpsServ.httpsGet<Paginacion<any>>(this.endpointHerramientas['get'], params)
   }
 
   crearHerramientas(herramienta: any) {

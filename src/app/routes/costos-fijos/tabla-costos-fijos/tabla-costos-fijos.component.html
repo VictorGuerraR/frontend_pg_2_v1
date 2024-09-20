@@ -25,16 +25,16 @@
       <td>{{ costos.usuario_creacion }}</td>
       <td>{{ costos.codigo_moneda }}</td>
       <td alignFrozen="right" pFrozenColumn>{{ costos.monto_total }}</td>
-      <td class="justify-content-around" style="display: flex; gap: 0.5rem; width: 10vw">
-        <p-button title="Visualización" severity="info" (click)="vista.emit(costos)">
+      <td class="justify-content-center" style="display: flex; gap: 0.5rem;">
+        <button pButton class="custom-button" title="Visualización" severity="info" (click)="vista.emit(costos)">
           <fa-icon [icon]="['fas', 'eye']"></fa-icon>
-        </p-button>
-        <p-button title="Edición" severity="warning" (click)="editar.emit(costos)">
+        </button>
+        <button pButton class="custom-button" title="Edición" severity="warning" (click)="editar.emit(costos)">
           <fa-icon [icon]="['fas', 'edit']"></fa-icon>
-        </p-button>
-        <p-button title="Eliminación" severity="danger" (click)="eliminar.emit(costos)">
+        </button>
+        <button pButton class="custom-button" title="Eliminación" severity="danger" (click)="eliminar.emit(costos)">
           <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
-        </p-button>
+        </button>
       </td>
     </tr>
   </ng-template>

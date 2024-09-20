@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { PeticionesHttpsService } from '@servicesTools/tools'
 import { Paginacion } from '@interfaces/pagination'
+import { PeticionesHttpsService } from '@servicesTools/tools'
 
 @Injectable({ providedIn: 'root' })
 export class CostosFijosService {
