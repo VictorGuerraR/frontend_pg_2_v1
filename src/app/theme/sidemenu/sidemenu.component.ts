@@ -59,6 +59,12 @@ export class SidemenuComponent implements OnInit {
       icon: ['fas', 'dashboard'] // Cambia 'icon' por el formato que necesita FontAwesome
     },
     {
+      route: 'costos-fijos',
+      name: 'Costos Fijos',
+      type: 'link',
+      icon: ['fas', 'dollar-sign']
+    },
+    {
       route: 'herramientas',
       name: 'Herramientas',
       type: 'link',
@@ -69,12 +75,6 @@ export class SidemenuComponent implements OnInit {
       name: 'Materias Primas',
       type: 'link',
       icon: ['fas', 'cogs']
-    },
-    {
-      route: 'costos-fijos',
-      name: 'Costos Fijos',
-      type: 'link',
-      icon: ['fas', 'dollar-sign']
     },
     {
       route: 'registros',

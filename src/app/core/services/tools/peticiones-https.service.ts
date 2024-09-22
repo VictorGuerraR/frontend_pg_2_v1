@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs';
 import { firstValueFrom } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -14,11 +13,11 @@ export class PeticionesHttpsService {
   }
 
   httpsPost<T>(url: string, body: Object = {}): Promise<T> {
-    return firstValueFrom(this.http.post<T>(url, { body }))
+    return firstValueFrom(this.http.post<T>(url, body))
   }
 
   httpsPatch<T>(url: string, body: Object = {}): Promise<T> {
-    return firstValueFrom(this.http.patch<T>(url, { body }))
+    return firstValueFrom(this.http.patch<T>(url, body))
   }
 
   httpsDelete<T>(url: string, body: Object = {}): Promise<T> {

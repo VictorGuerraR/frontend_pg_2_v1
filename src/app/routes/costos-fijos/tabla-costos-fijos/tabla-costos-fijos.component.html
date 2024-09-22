@@ -1,4 +1,5 @@
-<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped">
+<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" [scrollable]="true"
+  styleClass="p-datatable-striped white-space-nowrap text-overflow-ellipsis">
   <ng-template pTemplate="header">
     <tr>
       <th pSortableColumn="fecha_creacion">
@@ -6,7 +7,9 @@
       </th>
       <th pSortableColumn="usuario_creacion">
         Creado por <p-sortIcon field="usuario_creacion" />
-
+      </th>
+      <th pSortableColumn="descripcion">
+        Descripción<p-sortIcon field="descripcion" />
       </th>
       <th pSortableColumn="codigo_moneda">
         Moneda <p-sortIcon field="codigo_moneda" />
@@ -23,9 +26,10 @@
     <tr>
       <td>{{ data.fecha_creacion | date:'dd/MM/yyyy'}}</td>
       <td>{{ data.usuario_creacion }}</td>
+      <td>{{ data.descripcion }}</td>
       <td>{{ data.codigo_moneda }}</td>
-      <td alignFrozen="right" pFrozenColumn>{{ data.monto_total }}</td>
-      <td class="justify-content-center" style="display: flex; gap: 0.5rem;">
+      <td>{{ data.monto_total | number: '1.2-2'}}</td>
+      <td alignFrozen="right" pFrozenColumn class="justify-content-center" style="display: flex; gap: 0.5rem;">
         <button pButton class="custom-button" title="Visualización" severity="info" (click)="vista.emit(data)">
           <fa-icon [icon]="['fas', 'eye']"></fa-icon>
         </button>
@@ -41,7 +45,7 @@
   </ng-template>
   <ng-template pTemplate="emptymessage">
     <tr>
-      <td colspan="5">No se encontraron registros.</td>
+      <td colspan="6">No se encontraron registros.</td>
     </tr>
   </ng-template>
 </p-table>

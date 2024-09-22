@@ -1,4 +1,4 @@
-<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }"
+<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" [scrollable]="true"
   styleClass="p-datatable-striped white-space-nowrap text-overflow-ellipsis">
   <ng-template pTemplate="header">
     <tr>
@@ -23,7 +23,7 @@
       <th pSortableColumn="monto_impuesto">
         Total Impuesto <p-sortIcon field="monto_impuesto" />
       </th>
-      <th alignFrozen="right" pFrozenColumn>
+      <th alignFrozen="right" pFrozenColumn [frozen]="true">
         Opciones
       </th>
     </tr>
@@ -37,14 +37,16 @@
       <td>{{data.monto_total | number:'1.2-2'}} </td>
       <td>{{data.monto_ganacia | number:'1.2-2'}} </td>
       <td>{{data.monto_impuesto | number:'1.2-2'}} </td>
-      <td alignFrozen="right" pFrozenColumn class="justify-content-center" style="display: flex; gap: 0.5rem;">
+      <td alignFrozen="right" pFrozenColumn [frozen]="true" class="justify-content-center"
+        style="display: flex; gap: 0.5rem;">
         <button pButton class="custom-button" title="Visualización" severity="info" (click)="vista.emit(data)">
           <fa-icon [icon]="['fas', 'eye']"></fa-icon>
         </button>
         <button pButton class="custom-button" title="Edición" severity="warning" (click)="editar.emit(data)">
           <fa-icon [icon]="['fas', 'edit']"></fa-icon>
         </button>
-        <button pButton class="custom-button" title="Eliminación" severity="danger"  (click)="eliminarConfirmacion($event,data)">
+        <button pButton class="custom-button" title="Eliminación" severity="danger"
+          (click)="eliminarConfirmacion($event,data)">
           <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
         </button>
       </td>

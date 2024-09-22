@@ -1,4 +1,4 @@
-<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }"
+<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" [scrollable]="true"
   styleClass="p-datatable-striped white-space-nowrap text-overflow-ellipsis">
   <ng-template pTemplate="header">
     <tr>
@@ -48,7 +48,8 @@
         <button pButton class="custom-button" title="Edición" severity="warning" (click)="editar.emit(data)">
           <fa-icon [icon]="['fas', 'edit']"></fa-icon>
         </button>
-        <button pButton class="custom-button" title="Eliminación" severity="danger"  (click)="eliminarConfirmacion($event,data)">
+        <button pButton class="custom-button" title="Eliminación" severity="danger"
+          (click)="eliminarConfirmacion($event,data)">
           <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
         </button>
       </td>

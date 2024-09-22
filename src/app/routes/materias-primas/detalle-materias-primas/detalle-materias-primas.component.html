@@ -2,7 +2,13 @@
     <toolbar [titulo]="'Registros de Materias Primas'">
     </toolbar>
     
-    <tabla-materias-primas [data-tabla]="herramientas"></tabla-materias-primas>
+    <tabla-materias-primas 
+      [data-tabla]="materiasPrimas"
+      (editar)="edicion($event)" 
+      (eliminar)="eliminacion($event)"
+      (vista)="vista($event)"
+    >
+    </tabla-materias-primas>
     
     <p-paginator 
       (onPageChange)="handlePagination($event)" 
@@ -11,3 +17,17 @@
       [rowsPerPageOptions]="paginationConfigurations.rowsPerPageOptions"
     ></p-paginator>
   </div>
+
+  <p-dialog header="Creación" [modal]="true" [(visible)]="nuevoFlag" [style]="{ width: '25rem' }"
+    (onHide)="nuevoFlag=false">
+    <form-materias-primas />
+  </p-dialog>
+  
+  <p-dialog header="Edición" [modal]="true" [(visible)]="edicionFlag" [style]="{ width: '25rem' }"
+    (onHide)="edicionFlag=false">
+    <form-materias-primas />
+  </p-dialog>
+  
+  <p-dialog header="Vista" [modal]="true" [(visible)]="vistaFlag" [style]="{ width: '25rem' }" (onHide)="vistaFlag=false">
+    <form-materias-primas />
+  </p-dialog>

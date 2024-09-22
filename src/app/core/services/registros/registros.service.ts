@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Paginacion } from '@interfaces/pagination'
 import { PeticionesHttpsService } from '@servicesTools/tools'
 
@@ -25,12 +24,19 @@ export class RegistrosService {
   }
 
   constructor(
-    private toastServ: ToastrService,
     private peticionesHttpsServ: PeticionesHttpsService
   ) { }
 
   obtenerRegistrosMaestros(params: any) {
     return this.peticionesHttpsServ.httpsGet<Paginacion<any>>(this.endpointMaestro['get'], params)
+  }
+
+  crearRegistrosMaestros(params: any) {
+    return this.peticionesHttpsServ.httpsPost(this.endpointMaestro['post'], params)
+  }
+
+  eliminarRegistrosMaestros(params: any) {
+    return this.peticionesHttpsServ.httpsDelete(this.endpointMaestro['delete'], params)
   }
 
 }

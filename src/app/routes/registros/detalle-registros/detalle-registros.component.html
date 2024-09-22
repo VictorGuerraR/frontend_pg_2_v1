@@ -1,8 +1,13 @@
 <div class="flex flex-column gap-8">
-    <toolbar [titulo]="'Registros de Movimientos'">
+    <toolbar [titulo]="'Registros de Movimientos'" >
     </toolbar>
     
-    <tabla-registros [data-tabla]="herramientas"></tabla-registros>
+    <tabla-registros 
+     [data-tabla]="registros"
+     (eliminar)="eliminacion($event)"
+     (vista)="vista($event)"
+     (editar)="edicion($event)"
+    ></tabla-registros>
     
     <p-paginator 
       (onPageChange)="handlePagination($event)" 
