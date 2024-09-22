@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 import { Paginacion } from '@interfaces/pagination'
 import { PeticionesHttpsService } from '@servicesTools/tools'
 
@@ -14,7 +13,6 @@ export class CostosFijosService {
   }
 
   constructor(
-    private toastServ: ToastrService,
     private peticionesHttpsServ: PeticionesHttpsService
   ) { }
 

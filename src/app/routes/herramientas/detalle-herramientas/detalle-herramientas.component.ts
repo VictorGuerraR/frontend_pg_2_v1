@@ -26,8 +26,8 @@ export class DetalleHerramientasComponent implements OnInit {
   private readonly herramientasServ = inject(HerramientasService);
 
   paginacion: any;
-  herramientas: any
-  herramientaSeleccionada: any
+  herramientas: any[] = []
+  herramientaSeleccionada: any = null
   vistaFlag: boolean = false
   nuevoFlag: boolean = false
   edicionFlag: boolean = false
@@ -63,14 +63,20 @@ export class DetalleHerramientasComponent implements OnInit {
 
   async creacion(data: any) {
     await this.herramientasServ.crearHerramientas(data)
-      .then(() => this.toastServ.success('Se ha creado el registro.', 'Creación'))
+      .then(() => {
+        this.toastServ.success('Se ha creado el registro.', 'Creación')
+        this.nuevoFlag = false
+      })
       .catch(() => this.toastServ.error('No fue posible crear el registro.', 'Error en Creación'))
       .finally(() => this.solicitarInformacion({ activo: true }))
   }
 
   async actualizacion(data: any) {
     await this.herramientasServ.actualizarHerramientas(data)
-      .then(() => this.toastServ.info('Se ha actualizado el registro.', 'Actualización'))
+      .then(() => {
+        this.toastServ.info('Se ha actualizado el registro.', 'Actualización')
+        this.edicionFlag = false
+      })
       .catch(() => this.toastServ.error('No fue posible actualizar el registro.', 'Error en Actualización'))
       .finally(() => this.solicitarInformacion({ activo: true }))
   }

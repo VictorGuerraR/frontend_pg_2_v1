@@ -27,8 +27,8 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 })
 export class FormCostosFijosComponent implements OnInit {
 
-  @Input({ required: true, alias: 'tipo-operacion' }) operacion: 'creacion' | 'edicion' | 'vista' = 'creacion';
-  @Input({ alias: 'informacionForm' }) infoForm: any = {}
+  @Input({ required: true, alias: 'tipo-operacion' }) operacion: 'creacion' | 'actualizacion' | 'vista' = 'creacion';
+  @Input({ alias: 'informacionForm' }) infoForm: any = null
   @Output() formulario: EventEmitter<any> = new EventEmitter();
 
   monedas: any[] = [{ label: 'Quetzales', value: 'GTQ' }]
@@ -45,9 +45,11 @@ export class FormCostosFijosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.form.patchValue(this.infoForm)
+    if (this.infoForm) {
+      this.form.patchValue(this.infoForm)
+    }
     // Lógica para habilitar/deshabilitar según la operación
-    if (this.operacion === 'creacion' || this.operacion === 'edicion') {
+    if (this.operacion === 'creacion' || this.operacion === 'actualizacion') {
       this.form.enable(); // Habilitar todos los campos
     } else if (this.operacion === 'vista') {
       this.form.disable(); // Deshabilitar todos los campos

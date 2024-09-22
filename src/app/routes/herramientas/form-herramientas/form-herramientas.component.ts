@@ -6,6 +6,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { MatButtonModule } from '@angular/material/button';
 import { MtxButtonModule } from '@ng-matero/extensions/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CatalogosService } from '@services/catologos/catalogos.service'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -30,8 +31,8 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
 })
 export class FormHerramientasComponent implements OnInit {
 
-  @Input({ required: true, alias: 'tipo-operacion' }) operacion: 'creacion' | 'edicion' | 'vista' = 'creacion';
-  @Input({ alias: 'informacionForm' }) infoForm: any = {}
+  @Input({ required: true, alias: 'tipo-operacion' }) operacion: 'creacion' | 'actualizacion' | 'vista' = 'creacion';
+  @Input({ alias: 'informacionForm' }) infoForm: any = null
   @Output() formulario: EventEmitter<any> = new EventEmitter();
 
   monedas: any[] = [{ label: 'Quetzales', value: 'GTQ' }]
@@ -42,7 +43,7 @@ export class FormHerramientasComponent implements OnInit {
     cod_herramienta: null,
     cod_tipo_depreciacion: [, [Validators.required]],
     cod_usuario_responsable: [, [Validators.required]],
-    fecha_adquisicion: [, [Validators.required]],
+    fecha_adquisicion: [new Date(), [Validators.required]],
     descripcion: [, [Validators.required]],
     codigo_moneda: ['GTQ', [Validators.required]],
     monto: [, [Validators.required]],
@@ -51,17 +52,36 @@ export class FormHerramientasComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder
-  ) { }
+    private fb: FormBuilder,
+    private catalogoService: CatalogosService
+  ) { this.solicitarCatalogos() }
 
   ngOnInit(): void {
-    this.form.patchValue(this.infoForm)
+    if (this.infoForm) {
+      const { fecha_adquisicion, ...info } = this.infoForm
+      this.form.patchValue({
+        fecha_adquisicion: new Date(fecha_adquisicion),
+        ...info
+      })
+    }
     // Lógica para habilitar/deshabilitar según la operación
-    if (this.operacion === 'creacion' || this.operacion === 'edicion') {
+    if (this.operacion === 'creacion' || this.operacion === 'actualizacion') {
       this.form.enable(); // Habilitar todos los campos
     } else if (this.operacion === 'vista') {
       this.form.disable(); // Deshabilitar todos los campos
     }
+
+    this.form.controls['codigo_medida_electricidad'].disable()
+  }
+
+  solicitarCatalogos() {
+    this.catalogoService.obtenerUsuarios()
+      .then((respuesta: any) => this.usuarios = respuesta)
+      .catch(() => this.usuarios = [])
+
+    this.catalogoService.obtenerTipoDepreciacion()
+      .then((respuesta: any) => this.tipoDepreciacion = respuesta)
+      .catch(() => this.tipoDepreciacion = [])
   }
 
   emitir() { this.formulario.emit(this.form.getRawValue()) }

@@ -1,1 +1,36 @@
-<p>form-materias-primas works!</p>
+<form [formGroup]="form" class="grid form-grid p-fluid">
+  <div class="col-12 field">
+    <label for="descripcion">Descripción</label>
+    <input pInputText id="descripcion" formControlName="descripcion" type="text" />
+  </div>
+
+  <div class="field col-6">
+    <label for="moneda">Moneda</label>
+    <p-dropdown id="moneda" [options]="monedas" formControlName="codigo_moneda" optionLabel="label" optionValue="value"
+      placeholder="Moneda">
+    </p-dropdown>
+  </div>
+
+  <div class="col-6 field">
+    <label for="monto">Valor de la Materia Prima </label>
+    <input pInputText id="monto" formControlName="monto" type="text" pKeyFilter="money"
+      placeholder="Valor de la Herramienta" />
+  </div>
+
+  <div class="col-6 field">
+    <label for="cantidad">Peso / Cantidad</label>
+    <input pInputText id="cantidad" formControlName="cantidad" type="text" pKeyFilter="money"
+      placeholder="Consumo energetico de la Herramienta" />
+  </div>
+
+  <div class="col-6 field">
+    <label for="codigo_unidad">Medida de Unidad</label>
+    <input pInputText id="codigo_unidad" formControlName="codigo_unidad" type="text" pKeyFilter="alpha"
+      placeholder="Medida de Unidad" />
+  </div>
+
+  <button class="w-full m-y-16" mat-flat-button [disabled]="(this.form.invalid || this.operacion == 'vista')"
+    (click)="emitir()">
+    Enviar
+  </button>
+</form>

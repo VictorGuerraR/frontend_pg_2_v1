@@ -5,6 +5,9 @@
       <th pSortableColumn="fecha_creacion">
         Fecha Creación <p-sortIcon field="fecha_creacion" />
       </th>
+      <th pSortableColumn="fecha_adquisicion">
+        Fecha de Adquisición <p-sortIcon field="fecha_adquisicion" />
+      </th>
       <th pSortableColumn="usuario_creacion">
         Creado por <p-sortIcon field="usuario_creacion" />
       </th>
@@ -34,6 +37,7 @@
   <ng-template pTemplate="body" let-data>
     <tr>
       <td>{{ data.fecha_creacion | date:'dd/MM/yyyy'}}</td>
+      <td>{{ data.fecha_adquisicion | date:'dd/MM/yyyy'}}</td>
       <td>{{ data.usuario_creacion }}</td>
       <td>{{ data.usuario_responsable }}</td>
       <td>{{ data.descripcion }}</td>
