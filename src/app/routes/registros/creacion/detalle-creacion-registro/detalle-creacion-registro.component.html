@@ -4,7 +4,10 @@
   <div class="flex flex-direction col-12 p-0">
     <div class="col-5 p-1">
       <p-card>
-        <form-maestro [tipo-operacion]="'creacion'" />
+        <form-maestro 
+          [tipo-operacion]="tipoOperacion()"
+          (formulario)="operacionEncabezado($event)"
+        />
       </p-card>
     </div>
     <div class="col-7 p-1">

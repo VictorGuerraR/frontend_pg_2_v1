@@ -37,11 +37,11 @@ export class FormMaestroComponent {
     cod_maestro: null,
     codigo_moneda: ['GTQ', [Validators.required]],
     descripcion: [, [Validators.required]],
-    monto_ganacia: [, [Validators.required]],
-    monto_impuesto: [, [Validators.required]],
-    monto_total: [, [Validators.required]],
-    porcentaje_ganancia: [, [Validators.required]],
-    porcentaje_impuesto: [, [Validators.required]],
+    monto_ganacia: [0, [Validators.required]],
+    monto_impuesto: [0, [Validators.required]],
+    monto_total: [0, [Validators.required]],
+    porcentaje_ganancia: [10, [Validators.required]],
+    porcentaje_impuesto: [5, [Validators.required]],
     precio_kw: [, [Validators.required]]
   });
 
@@ -50,9 +50,8 @@ export class FormMaestroComponent {
   ) { }
 
   ngOnInit(): void {
-    if (this.infoForm) {
-      this.form.patchValue(this.infoForm)
-    }
+    if (this.infoForm) { this.form.patchValue(this.infoForm) }
+
     // Lógica para habilitar/deshabilitar según la operación
     if (this.operacion === 'creacion' || this.operacion === 'actualizacion') {
       this.form.enable(); // Habilitar todos los campos

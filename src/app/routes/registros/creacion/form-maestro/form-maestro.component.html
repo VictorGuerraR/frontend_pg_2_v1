@@ -40,6 +40,11 @@
     <input pInputText id="monto_impuesto" formControlName="monto_impuesto" type="text" pKeyFilter="money" />
   </div>
 
+  <div class="field col-6">
+    <label for="precio_kw">Precio de la luz (kW) </label>
+    <input pInputText id="precio_kw" formControlName="precio_kw" type="text" pKeyFilter="money" />
+  </div>
+
   <button class="w-full m-y-16" mat-flat-button [disabled]="(this.form.invalid || this.operacion == 'vista')"
     (click)="emitir()">
     Enviar

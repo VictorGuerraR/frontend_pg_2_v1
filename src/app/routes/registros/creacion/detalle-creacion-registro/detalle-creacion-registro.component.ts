@@ -32,6 +32,7 @@ export class DetalleCreacionRegistroComponent implements OnInit {
 
   codMaestro: number = 0;
   soloLectura: boolean = false;
+  infoForm: any = null
   infoTablaBienes: any = []
   infoTablaServicios: any = []
 
@@ -69,10 +70,30 @@ export class DetalleCreacionRegistroComponent implements OnInit {
       })
   }
 
+  async operacionEncabezado(encabezado: any) {
+    switch (this.tipoOperacion()) {
+      case 'creacion':
+        this.registrosServ.crearRegistrosMaestros(encabezado)
+          .then((respuesta) => console.log(respuesta))
+        break;
+
+      default:
+        break;
+    }
+
+  }
+
   mensaje() {
     if (this.codMaestro > 0 && this.soloLectura == false) { return "Edición de Registro" }
     else if (this.codMaestro > 0 && this.soloLectura == true) { return "Vista de Registro" }
     else { return "Creación de Registro" }
   }
+
+  tipoOperacion() {
+    if (this.codMaestro > 0 && this.soloLectura == false) { return "actualizacion" }
+    else if (this.codMaestro > 0 && this.soloLectura == true) { return "vista" }
+    else { return "creacion" }
+  }
+
 
 }
