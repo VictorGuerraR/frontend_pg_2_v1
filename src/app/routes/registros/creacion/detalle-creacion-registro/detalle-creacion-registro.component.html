@@ -1,28 +1,19 @@
 <div class="flex flex-column gap-8">
   <toolbar [titulo]="mensaje()" [mostrarReturn]="false" [mostrarAgregar]="false"></toolbar>
 
-  <div class="flex flex-direction col-12">
-    <div class="col-5">
+  <div class="flex flex-direction col-12 p-0">
+    <div class="col-5 p-1">
       <p-card>
         <form-maestro [tipo-operacion]="'creacion'" />
       </p-card>
     </div>
-    <div class="col-7">
+    <div class="col-7 p-1">
       <p-tabView>
-        <p-tabPanel header="Header I">
-          <p>
-            Lorem ipsum dolor sit amet...
-          </p>
+        <p-tabPanel header="Bienes">
+          <tabla-bienes data-tabla="null" />
         </p-tabPanel>
-        <p-tabPanel header="Header II">
-          <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
-          </p>
-        </p-tabPanel>
-        <p-tabPanel header="Header III">
-          <p>
-            At vero eos et accusamus et iusto odio dignissimos...
-          </p>
+        <p-tabPanel header="Servicios">
+          <tabla-servicios data-tabla="null" />
         </p-tabPanel>
       </p-tabView>
     </div>

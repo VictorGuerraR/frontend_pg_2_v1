@@ -1,0 +1,60 @@
+<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" [scrollable]="true"
+  styleClass="p-datatable-striped white-space-nowrap text-overflow-ellipsis">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="fecha_creacion">
+        Fecha Creación <p-sortIcon field="fecha_creacion" />
+      </th>
+      <th pSortableColumn="usuario_creacion">
+        Creado por <p-sortIcon field="usuario_creacion" />
+      </th>
+      <th pSortableColumn="descripcion" style="max-width: 15vw;" class="overflow-hidden">
+        Descripción <p-sortIcon field="descripcion" />
+      </th>
+      <th pSortableColumn="codigo_moneda">
+        Moneda <p-sortIcon field="codigo_moneda" />
+      </th>
+      <th pSortableColumn="monto">
+        Valor de la Materia Prima <p-sortIcon field="monto" />
+      </th>
+      <th pSortableColumn="cantidad">
+        Cantidad Inicial (+) <p-sortIcon field="cantidad" />
+      </th>
+      <th pSortableColumn="ingresos">
+        Movimientos (+) <p-sortIcon field="ingresos" />
+      </th>
+      <th pSortableColumn="egresos">
+        Movimientos (-) <p-sortIcon field="egresos" />
+      </th>
+      <th alignFrozen="right" pFrozenColumn>
+        Opciones
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+      <td>{{ data.fecha_creacion | date:'dd/MM/yyyy'}}</td>
+      <td>{{ data.usuario_creacion }}</td>
+      <td style="max-width: 15vw;" class="overflow-hidden">{{ data.descripcion }}</td>
+      <td>{{ data.codigo_moneda }}</td>
+      <td>{{ data.monto | number:'1.2-2'}}</td>
+      <td>{{ data.cantidad | number:'1.2-2'}} {{ data.codigo_unidad}}</td>
+      <td>{{ data.ingresos | number:'1.2-2'}} {{ data.codigo_unidad}}</td>
+      <td>{{ data.egresos | number:'1.2-2'}} {{ data.codigo_unidad}}</td>
+      <td alignFrozen="right" pFrozenColumn class="justify-content-center" style="display: flex; gap: 0.5rem;">
+        <button pButton class="custom-button" title="Visualización" severity="info" (click)="vista.emit(data)">
+          <fa-icon [icon]="['fas', 'eye']"></fa-icon>
+        </button>
+        <button pButton class="custom-button" title="Eliminación" severity="danger"
+          (click)="eliminarConfirmacion($event,data)">
+          <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="9">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>

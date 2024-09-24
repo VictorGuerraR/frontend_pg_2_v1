@@ -4,9 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { TabViewModule } from 'primeng/tabview';
 import { Component, OnInit } from '@angular/core';
 import { FormBienComponent } from '../form-bien/form-bien.component';
+import { TablaBienesComponent } from '../tabla-bienes/tabla-bienes.component';
 import { FormMaestroComponent } from '../form-maestro/form-maestro.component';
 import { ToolbarComponent } from '@shared/components/toolbar/toolbar.component';
 import { FormServicioComponent } from '../form-servicio/form-servicio.component';
+import { TablaServiciosComponent } from '../tabla-servicios/tabla-servicios.component'
 
 @Component({
   selector: 'detalle-creacion-registro',
@@ -19,8 +21,10 @@ import { FormServicioComponent } from '../form-servicio/form-servicio.component'
     TabViewModule,
     ToolbarComponent,
     FormBienComponent,
+    TablaBienesComponent,
     FormMaestroComponent,
-    FormServicioComponent
+    FormServicioComponent,
+    TablaServiciosComponent
   ],
 })
 export class DetalleCreacionRegistroComponent implements OnInit {
