@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Paginacion } from '@interfaces/pagination'
-import { PeticionesHttpsService } from '@servicesTools/tools'
+import { DetalleBienService } from './detalle-bien.service';
+import { PeticionesHttpsService } from '@servicesTools/tools';
+import { DetalleServiciosService } from './detalle-servicios.service';
+import { Estrategias } from '@interfaces/strategies'
 
 @Injectable({ providedIn: 'root' })
 export class RegistrosService {
@@ -11,19 +14,22 @@ export class RegistrosService {
     delete: '/registros-maestro'
   }
 
-  private endpointBien = {
-    get: '/registros-maestro/bien',
-    post: '/registros-maestro/bien',
-    delete: '/registros-maestro/bien'
-  }
-
-  private endpointServicio = {
-    get: '//registros-maestro/servicio',
-    post: '//registros-maestro/servicio',
-    delete: '//registros-maestro/servicio'
+  strategies: Estrategias = {
+    bienes: {
+      creacion: (value: any) => this.detalleBienServ.crearDetalleBien(value),
+      eliminacion: (value: any) => this.detalleBienServ.eliminarDetalleBien(value),
+      obtener: (value: any) => this.detalleBienServ.obtenerDetalleBien(value)
+    },
+    servicios: {
+      creacion: (value: any) => this.detalleServicioServ.crearDetalleServicios(value),
+      eliminacion: (value: any) => this.detalleServicioServ.eliminarDetalleServicios(value),
+      obtener: (value: any) => this.detalleServicioServ.obtenerDetalleServicios(value)
+    },
   }
 
   constructor(
+    private detalleBienServ: DetalleBienService,
+    private detalleServicioServ: DetalleServiciosService,
     private peticionesHttpsServ: PeticionesHttpsService
   ) { }
 

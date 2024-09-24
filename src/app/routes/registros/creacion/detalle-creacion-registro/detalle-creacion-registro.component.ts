@@ -3,6 +3,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { TabViewModule } from 'primeng/tabview';
 import { Component, OnInit } from '@angular/core';
+import { RegistrosService } from '@core/services';
 import { FormBienComponent } from '../form-bien/form-bien.component';
 import { TablaBienesComponent } from '../tabla-bienes/tabla-bienes.component';
 import { FormMaestroComponent } from '../form-maestro/form-maestro.component';
@@ -31,9 +32,12 @@ export class DetalleCreacionRegistroComponent implements OnInit {
 
   codMaestro: number = 0;
   soloLectura: boolean = false;
+  infoTablaBienes: any = []
+  infoTablaServicios: any = []
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private registrosServ: RegistrosService
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +45,28 @@ export class DetalleCreacionRegistroComponent implements OnInit {
       this.codMaestro = Number(params.cod_maestro || 0);
       this.soloLectura = params.soloLectura === 'true';
     });
+
+    if (this.codMaestro > 0) {
+      this.solicitarInformacion('bienes', { cod_maestro: this.codMaestro })
+      this.solicitarInformacion('servicios', { cod_maestro: this.codMaestro })
+    }
+  }
+
+  async solicitarInformacion(strategy: string, params = {}) {
+    this.registrosServ.strategies[strategy].obtener(params)
+      .then(({ respuesta }: any) => {
+        if (strategy == 'bienes') {
+          this.infoTablaBienes = respuesta
+        } else {
+          this.infoTablaServicios = respuesta
+        }
+      }).catch(() => {
+        if (strategy == 'bienes') {
+          this.infoTablaBienes = []
+        } else {
+          this.infoTablaServicios = []
+        }
+      })
   }
 
   mensaje() {

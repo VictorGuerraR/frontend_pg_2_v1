@@ -10,10 +10,10 @@
     <div class="col-7 p-1">
       <p-tabView>
         <p-tabPanel header="Bienes">
-          <tabla-bienes data-tabla="null" />
+          <tabla-bienes [data-tabla]="infoTablaBienes" />
         </p-tabPanel>
         <p-tabPanel header="Servicios">
-          <tabla-servicios data-tabla="null" />
+          <tabla-servicios [data-tabla]="infoTablaServicios" />
         </p-tabPanel>
       </p-tabView>
     </div>
