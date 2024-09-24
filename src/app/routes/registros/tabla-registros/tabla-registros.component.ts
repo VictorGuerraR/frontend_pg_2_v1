@@ -7,7 +7,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { faEdit, faTrashAlt, faEye } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 
-
 @Component({
   selector: 'tabla-registros',
   standalone: true,

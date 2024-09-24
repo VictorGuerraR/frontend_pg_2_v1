@@ -1,0 +1,47 @@
+<form [formGroup]="form" class="grid form-grid p-fluid">
+  <div class="col-12 field">
+    <label for="descripcion">Descripción</label>
+    <input pInputText id="descripcion" formControlName="descripcion" />
+  </div>
+
+  <div class="field col-6">
+    <label>Moneda</label>
+    <p-dropdown [options]="monedas" formControlName="codigo_moneda" optionLabel="label" optionValue="value"
+      placeholder="Moneda"></p-dropdown>
+  </div>
+
+  <div class="field col-6">
+    <label for="monto_total">Total</label>
+    <input pInputText id="monto_total" formControlName="monto_total" type="text" pKeyFilter="money" />
+  </div>
+
+  <div class="field col-12">
+    <label for="monto_total">Total de Servicios</label>
+    <input pInputText id="monto_total" formControlName="monto_total" type="text" pKeyFilter="money" />
+  </div>
+
+  <div class="field col-6">
+    <label for="porcentaje_ganancia">Porcentaje de Ganancia</label>
+    <input pInputText id="porcentaje_ganancia" formControlName="porcentaje_ganancia" type="text" pKeyFilter="money" />
+  </div>
+
+  <div class="field col-6">
+    <label for="monto_ganacia">Ganancia</label>
+    <input pInputText id="monto_ganacia" formControlName="monto_ganacia" type="text" pKeyFilter="money" />
+  </div>
+
+  <div class="field col-6">
+    <label for="porcentaje_impuesto">Porcentaje de Impuesto</label>
+    <input pInputText id="porcentaje_impuesto" formControlName="porcentaje_impuesto" type="text" pKeyFilter="money" />
+  </div>
+
+  <div class="field col-6">
+    <label for="monto_impuesto">Impuesto</label>
+    <input pInputText id="monto_impuesto" formControlName="monto_impuesto" type="text" pKeyFilter="money" />
+  </div>
+
+  <button class="w-full m-y-16" mat-flat-button [disabled]="(this.form.invalid || this.operacion == 'vista')"
+    (click)="emitir()">
+    Enviar
+  </button>
+</form>

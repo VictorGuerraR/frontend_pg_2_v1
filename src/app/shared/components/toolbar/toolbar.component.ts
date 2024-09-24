@@ -19,6 +19,8 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 export class ToolbarComponent {
   faArrowLeft = faArrowLeft;
   faPlus = faPlus;
+  @Input() mostrarReturn: boolean = true;
+  @Input() mostrarAgregar: boolean = true;
   @Input({ required: true }) titulo: any = []
   @Output() agregar: EventEmitter<any> = new EventEmitter();
 

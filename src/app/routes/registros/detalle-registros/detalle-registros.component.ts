@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { RegistrosService } from '@core/services';
 import { PaginatorModule } from 'primeng/paginator';
@@ -18,6 +19,7 @@ import { TablaRegistrosComponent } from "../tabla-registros/tabla-registros.comp
   styles: ``
 })
 export class DetalleRegistrosComponent {
+  private readonly router = inject(Router)
   private readonly toastServ = inject(ToastrService)
   private readonly registrosServ = inject(RegistrosService);
 
@@ -49,9 +51,13 @@ export class DetalleRegistrosComponent {
     await this.solicitarInformacion({ page, limit, activo: true })
   }
 
-  vista(data: any) { console.log(data) }
-
-  edicion(data: any) { console.log(data) }
+  navegar(data: any, soloLectura: boolean) {
+    const { cod_maestro } = data
+    this.router.navigate(
+      ['sistema', 'registros', 'creacion', cod_maestro, soloLectura],
+      { skipLocationChange: soloLectura }
+    )
+  }
 
   async eliminacion(data: any) {
     const { cod_maestro } = data

@@ -1,12 +1,12 @@
 <div class="flex flex-column gap-8">
-    <toolbar [titulo]="'Registros de Movimientos'" >
+    <toolbar [titulo]="'Registros de Movimientos'" (agregar)="navegar({cod_maestro: 0}, true)">
     </toolbar>
     
     <tabla-registros 
      [data-tabla]="registros"
      (eliminar)="eliminacion($event)"
-     (vista)="vista($event)"
-     (editar)="edicion($event)"
+     (vista)="navegar($event, true)"
+     (editar)="navegar($event, false)"
     ></tabla-registros>
     
     <p-paginator 

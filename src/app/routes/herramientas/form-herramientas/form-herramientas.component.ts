@@ -2,7 +2,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { KeyFilterModule } from 'primeng/keyfilter';
 import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
 import { MatButtonModule } from '@angular/material/button';
 import { MtxButtonModule } from '@ng-matero/extensions/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,7 +23,6 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
     MatButtonModule,
     KeyFilterModule,
     MtxButtonModule,
-    FloatLabelModule,
     MatFormFieldModule,
     ReactiveFormsModule,
   ],

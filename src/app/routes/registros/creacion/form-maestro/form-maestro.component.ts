@@ -9,10 +9,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'form-materias-primas',
+  selector: 'form-maestro',
   standalone: true,
-  templateUrl: './form-materias-primas.component.html',
-  styles: ``,
+  templateUrl: './form-maestro.component.html',
+  styleUrl: './form-maestro.component.scss',
   imports: [
     FormsModule,
     DropdownModule,
@@ -23,9 +23,9 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
     MtxButtonModule,
     MatFormFieldModule,
     ReactiveFormsModule,
-  ]
+  ],
 })
-export class FormMateriasPrimasComponent {
+export class FormMaestroComponent {
 
   @Input({ required: true, alias: 'tipo-operacion' }) operacion: 'creacion' | 'actualizacion' | 'vista' = 'creacion';
   @Input({ alias: 'informacionForm' }) infoForm: any = null
@@ -34,12 +34,15 @@ export class FormMateriasPrimasComponent {
   monedas: any[] = [{ label: 'Quetzales', value: 'GTQ' }]
 
   form = this.fb.group({
-    cod_materia_prima: null,
-    descripcion: [, [Validators.required]],
+    cod_maestro: null,
     codigo_moneda: ['GTQ', [Validators.required]],
-    monto: [, [Validators.required]],
-    cantidad: [, [Validators.required]],
-    codigo_unidad: ['KG', [Validators.required]]
+    descripcion: [, [Validators.required]],
+    monto_ganacia: [, [Validators.required]],
+    monto_impuesto: [, [Validators.required]],
+    monto_total: [, [Validators.required]],
+    porcentaje_ganancia: [, [Validators.required]],
+    porcentaje_impuesto: [, [Validators.required]],
+    precio_kw: [, [Validators.required]]
   });
 
   constructor(
@@ -56,9 +59,11 @@ export class FormMateriasPrimasComponent {
     } else if (this.operacion === 'vista') {
       this.form.disable(); // Deshabilitar todos los campos
     }
-    this.form.controls['codigo_unidad'].disable()
+    this.form.controls['codigo_moneda'].disable()
 
   }
 
   emitir() { this.formulario.emit(this.form.getRawValue()) }
+
+
 }

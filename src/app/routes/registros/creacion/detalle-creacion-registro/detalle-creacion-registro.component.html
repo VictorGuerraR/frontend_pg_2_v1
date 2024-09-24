@@ -1,0 +1,20 @@
+<div class="flex flex-column gap-8">
+  <toolbar [titulo]="mensaje()" [mostrarReturn]="false" [mostrarAgregar]="false"></toolbar>
+
+  <div class="flex flex-direction col-12">
+    <div class="col-5">
+      <p-card>
+        <form-maestro [tipo-operacion]="'creacion'" />
+      </p-card>
+    </div>
+    <div class="col-8">
+
+    </div>
+  </div>
+
+</div>
+
+<p-dialog>
+  <ng-template pTemplate="body">
+  </ng-template>
+</p-dialog>

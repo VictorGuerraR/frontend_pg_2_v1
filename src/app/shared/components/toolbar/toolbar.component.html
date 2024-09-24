@@ -4,11 +4,15 @@
   </div>
   <div class="p-toolbar-group-end flex flex-row gap-8">
     <ng-content></ng-content>
+    @if(mostrarAgregar){
     <button pButton style="height: 30px;" title="Agregar" (click)="agregar.emit(true)">
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
+    }
+    @if(mostrarReturn){
     <button pButton style="height: 30px;" title="Regresar" (click)="returnUrl()">
       <fa-icon [icon]="faArrowLeft"></fa-icon>
     </button>
+    }
   </div>
 </p-toolbar>
