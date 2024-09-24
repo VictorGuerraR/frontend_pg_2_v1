@@ -1,6 +1,7 @@
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { ActivatedRoute } from '@angular/router';
+import { TabViewModule } from 'primeng/tabview';
 import { Component, OnInit } from '@angular/core';
 import { FormBienComponent } from '../form-bien/form-bien.component';
 import { FormMaestroComponent } from '../form-maestro/form-maestro.component';
@@ -15,6 +16,7 @@ import { FormServicioComponent } from '../form-servicio/form-servicio.component'
   imports: [
     CardModule,
     DialogModule,
+    TabViewModule,
     ToolbarComponent,
     FormBienComponent,
     FormMaestroComponent,
@@ -31,7 +33,7 @@ export class DetalleCreacionRegistroComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
+    this.route.params.subscribe((params: any) => {
       this.codMaestro = Number(params.cod_maestro || 0);
       this.soloLectura = params.soloLectura === 'true';
     });
