@@ -8,13 +8,13 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 @Component({
   selector: 'toolbar',
   standalone: true,
+  templateUrl: './toolbar.component.html',
+  styles: [''],
   imports: [
     ToolbarModule,
     ButtonModule,
     FontAwesomeModule
   ],
-  templateUrl: './toolbar.component.html',
-  styles: ''
 })
 export class ToolbarComponent {
   faArrowLeft = faArrowLeft;

@@ -12,7 +12,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
   selector: 'form-materias-primas',
   standalone: true,
   templateUrl: './form-materias-primas.component.html',
-  styles: ``,
+  styles: [``],
   imports: [
     FormsModule,
     DropdownModule,

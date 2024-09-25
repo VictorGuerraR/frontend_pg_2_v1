@@ -9,7 +9,6 @@ import { CatalogosService } from '@services/catologos/catalogos.service'
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
-
 @Component({
   selector: 'form-herramientas',
   standalone: true,

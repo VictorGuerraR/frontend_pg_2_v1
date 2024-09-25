@@ -1,17 +1,20 @@
 import { Router } from '@angular/router';
 import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { TabViewModule } from 'primeng/tabview';
 import { Component, OnInit } from '@angular/core';
 import { RegistrosService } from '@core/services';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Estrategia, Estrategias } from '@interfaces/strategies';
 import { FormBienComponent } from '../form-bien/form-bien.component';
 import { TablaBienesComponent } from '../tabla-bienes/tabla-bienes.component';
 import { FormMaestroComponent } from '../form-maestro/form-maestro.component';
 import { ToolbarComponent } from '@shared/components/toolbar/toolbar.component';
 import { FormServicioComponent } from '../form-servicio/form-servicio.component';
-import { TablaServiciosComponent } from '../tabla-servicios/tabla-servicios.component'
-import { Estrategia, Estrategias } from '@interfaces/strategies';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { TablaServiciosComponent } from '../tabla-servicios/tabla-servicios.component';
 
 @Component({
   selector: 'detalle-creacion-registro',
@@ -21,8 +24,10 @@ import { Estrategia, Estrategias } from '@interfaces/strategies';
   imports: [
     CardModule,
     DialogModule,
+    ButtonModule,
     TabViewModule,
     ToolbarComponent,
+    FontAwesomeModule,
     FormBienComponent,
     TablaBienesComponent,
     FormMaestroComponent,
@@ -32,17 +37,26 @@ import { Estrategia, Estrategias } from '@interfaces/strategies';
 })
 export class DetalleCreacionRegistroComponent implements OnInit {
 
+  faPlus = faPlus;
+  infoForm: any = null;
   codMaestro: number = 0;
-  soloLectura: boolean = false;
-  infoForm: any = null
   infoTablaBienes: any = []
   infoTablaServicios: any = []
+  bienSeleccionado: any = null
+  ServicioSeleccionado: any = null
+
+  soloLectura: boolean = false;
+  nuevoBienFlag: boolean = false;
+  vistaBienFlag: boolean = false;
+  nuevoServicioFlag: boolean = false;
+  vistaServiciosFlag: boolean = false;
 
   constructor(
+    library: FaIconLibrary,
     private router: Router,
     private routeActive: ActivatedRoute,
     private registrosServ: RegistrosService
-  ) { }
+  ) { library.addIcons(faPlus); }
 
   ngOnInit(): void {
     this.routeActive.params.subscribe((params: any) => {
@@ -83,23 +97,27 @@ export class DetalleCreacionRegistroComponent implements OnInit {
           this.codMaestro = res?.[0].cod_maestro
           this.solicitarInformacion()
         })
-
     }
 
   }
 
   async operacionDetalles(strategy: keyof Estrategias, operacion: keyof Estrategia, data: any) {
     this.registrosServ.strategies[strategy][operacion](data)
-      .then((res: any) => this.solicitarInformacionTablas(strategy))
+      .then((res: any) => {
+        if (this.nuevoBienFlag) this.nuevoBienFlag = !this.nuevoBienFlag;
+        if (this.vistaBienFlag) this.vistaBienFlag = !this.vistaBienFlag;
+        if (this.nuevoServicioFlag) this.nuevoServicioFlag = !this.nuevoServicioFlag;
+        if (this.vistaServiciosFlag) this.vistaServiciosFlag = !this.vistaServiciosFlag;
+        this.solicitarInformacionTablas(strategy)
+      })
   }
 
-  eliminarBien({ cod_detalle_bien }: any) {
-    this.operacionDetalles('bienes', 'eliminacion', { cod_detalle_bien })
-  }
 
-  eliminarServicio({ cod_detalle_servicio }: any) {
-    this.operacionDetalles('servicios', 'eliminacion', { cod_detalle_servicio })
-  }
+  vistaBien(data: any) { this.bienSeleccionado = data; this.vistaBienFlag = true }
+  eliminarBien({ cod_detalle_bien }: any) { this.operacionDetalles('bienes', 'eliminacion', { cod_detalle_bien }) }
+
+  vistaServicio(data: any) { this.ServicioSeleccionado = data; this.vistaServiciosFlag = true }
+  eliminarServicio({ cod_detalle_servicio }: any) { this.operacionDetalles('servicios', 'eliminacion', { cod_detalle_servicio }) }
 
   mensaje() {
     if (this.codMaestro > 0 && this.soloLectura == false) { return "Edición de Registro" }

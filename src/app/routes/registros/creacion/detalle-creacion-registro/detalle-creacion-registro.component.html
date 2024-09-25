@@ -1,5 +1,12 @@
 <div class="flex flex-column gap-8">
-  <toolbar [titulo]="mensaje()" [mostrarReturn]="false" [mostrarAgregar]="false"></toolbar>
+  <toolbar [titulo]="mensaje()" [mostrarReturn]="false" [mostrarAgregar]="false">
+    <button pButton style="height: 30px;" label="Agregar Servicio"  class="gap-2" (click)="nuevoServicioFlag=true">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+    <button pButton style="height: 30px;" label="Agregar Bien" class="gap-2" (click)="nuevoBienFlag=true">
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+  </toolbar>
 
   <div class="flex flex-direction col-12 p-0">
     <div class="col-5 p-1">
@@ -12,10 +19,18 @@
     <div class="col-7 p-1">
       <p-tabView>
         <p-tabPanel header="Bienes">
-          <tabla-bienes [data-tabla]="infoTablaBienes" (eliminar)="eliminarBien($event)" />
+          <tabla-bienes 
+            [data-tabla]="infoTablaBienes" 
+            (eliminar)="eliminarBien($event)" 
+            (vista)="vistaBien($event)" 
+          />
         </p-tabPanel>
         <p-tabPanel header="Servicios">
-          <tabla-servicios [data-tabla]="infoTablaServicios" (eliminar)="eliminarServicio($event)" />
+          <tabla-servicios 
+            [data-tabla]="infoTablaServicios" 
+            (eliminar)="eliminarServicio($event)" 
+            (vista)="vistaServicio($event)"
+          />
         </p-tabPanel>
       </p-tabView>
     </div>
@@ -24,7 +39,35 @@
 
 </div>
 
-<p-dialog>
+<!-- FORMULARIO DE BIEN -->
+<p-dialog 
+  header="Creación Bien" 
+  [modal]="true" 
+  [(visible)]="nuevoBienFlag" 
+  [style]="{ width: '30vw' }"
+  (onHide)="nuevoBienFlag=false"
+>
   <ng-template pTemplate="body">
+    <form-bien 
+      [informacionForm]="{cod_maestro: codMaestro}"
+      [tipo-operacion]="'creacion'"
+      (formulario)="operacionDetalles('bienes', 'creacion', $event)"
+    ></form-bien>
+  </ng-template>
+</p-dialog>
+
+<p-dialog 
+  header="Vista Bien" 
+  [modal]="true" 
+  [(visible)]="vistaBienFlag" 
+  [style]="{ width: '30vw' }"
+  (onHide)="vistaBienFlag=false"
+>
+  <ng-template pTemplate="body">
+    <form-bien 
+      [informacionForm]="bienSeleccionado"
+      [tipo-operacion]="'vista'"
+      (formulario)="operacionDetalles('bienes', 'creacion', $event)"
+    ></form-bien>
   </ng-template>
 </p-dialog>
