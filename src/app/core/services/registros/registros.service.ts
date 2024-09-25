@@ -11,7 +11,9 @@ export class RegistrosService {
   private endpointMaestro = {
     get: '/registros-maestro',
     post: '/registros-maestro',
-    delete: '/registros-maestro'
+    patch: '/registros-maestro',
+    delete: '/registros-maestro',
+    getEncabezado: '/registros-maestro/encabezado'
   }
 
   strategies: Estrategias = {
@@ -37,8 +39,16 @@ export class RegistrosService {
     return this.peticionesHttpsServ.httpsGet<Paginacion<any>>(this.endpointMaestro['get'], params)
   }
 
+  obtenerEncabezadoMaestro(params: any) {
+    return this.peticionesHttpsServ.httpsGet(this.endpointMaestro['getEncabezado'], params)
+  }
+
   crearRegistrosMaestros(params: any) {
     return this.peticionesHttpsServ.httpsPost(this.endpointMaestro['post'], params)
+  }
+
+  actualizarRegistrosMaestros(params: any) {
+    return this.peticionesHttpsServ.httpsPatch(this.endpointMaestro['patch'], params)
   }
 
   eliminarRegistrosMaestros(params: any) {

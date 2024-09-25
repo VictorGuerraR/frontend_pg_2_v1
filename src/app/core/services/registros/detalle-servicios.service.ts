@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core'; 
+import { Injectable } from '@angular/core';
 import { PeticionesHttpsService } from '@servicesTools/tools'
 
 @Injectable({ providedIn: 'root' })
 export class DetalleServiciosService {
 
   private endpointServicio = {
-    get: '//registros-maestro/servicio',
-    post: '//registros-maestro/servicio',
-    delete: '//registros-maestro/servicio'
+    get: '/registros-maestro/servicio',
+    post: '/registros-maestro/servicio',
+    delete: '/registros-maestro/servicio'
   }
 
   constructor(

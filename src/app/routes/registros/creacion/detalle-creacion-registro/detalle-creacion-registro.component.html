@@ -4,22 +4,22 @@
   <div class="flex flex-direction col-12 p-0">
     <div class="col-5 p-1">
       <p-card>
-        <form-maestro 
-          [tipo-operacion]="tipoOperacion()"
-          (formulario)="operacionEncabezado($event)"
-        />
+        <form-maestro [tipo-operacion]="tipoOperacion()" [informacionForm]="infoForm"
+          (formulario)="operacionEncabezado($event)" />
       </p-card>
     </div>
+    @if (codMaestro > 0 ) {
     <div class="col-7 p-1">
       <p-tabView>
         <p-tabPanel header="Bienes">
-          <tabla-bienes [data-tabla]="infoTablaBienes" />
+          <tabla-bienes [data-tabla]="infoTablaBienes" (eliminar)="eliminarBien($event)" />
         </p-tabPanel>
         <p-tabPanel header="Servicios">
-          <tabla-servicios [data-tabla]="infoTablaServicios" />
+          <tabla-servicios [data-tabla]="infoTablaServicios" (eliminar)="eliminarServicio($event)" />
         </p-tabPanel>
       </p-tabView>
     </div>
+    }
   </div>
 
 </div>

@@ -5,7 +5,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MatButtonModule } from '@angular/material/button';
 import { MtxButtonModule } from '@ng-matero/extensions/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
@@ -25,7 +25,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angu
     ReactiveFormsModule,
   ],
 })
-export class FormMaestroComponent {
+export class FormMaestroComponent implements OnInit, OnChanges {
 
   @Input({ required: true, alias: 'tipo-operacion' }) operacion: 'creacion' | 'actualizacion' | 'vista' = 'creacion';
   @Input({ alias: 'informacionForm' }) infoForm: any = null
@@ -49,20 +49,24 @@ export class FormMaestroComponent {
     private fb: FormBuilder
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { this.actualizarForm() }
+
+  ngOnChanges(changes: SimpleChanges): void { this.actualizarForm() }
+
+  actualizarForm() {
     if (this.infoForm) { this.form.patchValue(this.infoForm) }
 
-    // Lógica para habilitar/deshabilitar según la operación
     if (this.operacion === 'creacion' || this.operacion === 'actualizacion') {
-      this.form.enable(); // Habilitar todos los campos
+      this.form.enable();
     } else if (this.operacion === 'vista') {
-      this.form.disable(); // Deshabilitar todos los campos
+      this.form.disable();
     }
     this.form.controls['codigo_moneda'].disable()
-
+    this.form.controls['monto_impuesto'].disable()
+    this.form.controls['monto_ganacia'].disable()
+    this.form.controls['monto_total'].disable()
   }
 
   emitir() { this.formulario.emit(this.form.getRawValue()) }
-
 
 }
