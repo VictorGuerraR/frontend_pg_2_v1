@@ -7,7 +7,8 @@
   <div class="field col-12">
     <label for="cod_materia_prima">Materia Prima</label>
     <p-dropdown id="cod_materia_prima" [options]="materiasPrimas" formControlName="cod_materia_prima"
-      optionLabel="descripcion" optionValue="cod_materia_prima" placeholder="Materia Prima" optionDisabled="inactivo">
+      optionLabel="descripcion" optionValue="cod_materia_prima" placeholder="Materia Prima" optionDisabled="inactivo"
+      appendTo="body">
     </p-dropdown>
   </div>
 
@@ -26,7 +27,7 @@
   <div class="field col-5">
     <label for="moneda">Moneda</label>
     <p-dropdown id="moneda" [options]="monedas" formControlName="codigo_moneda" optionLabel="label" optionValue="value"
-      placeholder="Moneda">
+      placeholder="Moneda" appendTo="body">
     </p-dropdown>
   </div>
 

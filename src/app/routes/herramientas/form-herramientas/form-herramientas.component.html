@@ -13,7 +13,7 @@
   <div class="field col-6">
     <label for="moneda">Moneda</label>
     <p-dropdown id="moneda" [options]="monedas" formControlName="codigo_moneda" optionLabel="label" optionValue="value"
-      placeholder="Moneda">
+      placeholder="Moneda" appendTo="body">
     </p-dropdown>
   </div>
 
@@ -27,14 +27,14 @@
     <label for="usuario_responsable">Usuario Responsable</label>
     <p-dropdown id="usuario_responsable" [options]="usuarios" formControlName="cod_usuario_responsable"
       optionLabel="nombre_completo" optionValue="cod_usuario" placeholder="Usuario Responsable"
-      optionDisabled="inactivo">
+      optionDisabled="inactivo" appendTo="body">
     </p-dropdown>
   </div>
 
   <div class="field col-12">
     <label for="cod_tipo_depreciacion">Tipo de Depreciación</label>
     <p-dropdown id="cod_tipo_depreciacion" [options]="tipoDepreciacion" formControlName="cod_tipo_depreciacion"
-      optionLabel="descripcion" optionValue="cod_tipo_depreciacion" placeholder="Tipo de Depreciación">
+      optionLabel="descripcion" optionValue="cod_tipo_depreciacion" placeholder="Tipo de Depreciación" appendTo="body">
     </p-dropdown>
   </div>
 

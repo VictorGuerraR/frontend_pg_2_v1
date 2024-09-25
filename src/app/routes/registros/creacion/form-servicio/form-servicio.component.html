@@ -1,1 +1,59 @@
-<p>form-servicio works!</p>
+<form [formGroup]="form" class="grid form-grid p-fluid">
+  <div class="col-12 field">
+    <label for="descripcion">Descripción</label>
+    <input pInputText id="descripcion" formControlName="descripcion" />
+  </div>
+
+  <div class="field col-6">
+    <label>Herramienta</label>
+    <p-dropdown [options]="herramientas" formControlName="cod_herramienta" optionLabel="descripcion"
+      optionValue="cod_herramienta" placeholder="Herramientas" optionDisabled="inactivo">
+    </p-dropdown>
+  </div>
+
+  <div class="field col-6">
+    <label>Moneda</label>
+    <p-dropdown [options]="monedas" formControlName="codigo_moneda" optionLabel="label" optionValue="value"
+      placeholder="Moneda"></p-dropdown>
+  </div>
+
+  <div class="field col-6">
+    <label for="tiempo_uso">Tiempo de Uso</label>
+    <input pInputText id="tiempo_uso" formControlName="tiempo_uso" type="text" pKeyFilter="money" />
+  </div>
+
+  <div class="field col-6">
+    <label for="codigo_tiempo_uso">Codigo Tiempo de Uso</label>
+    <p-dropdown [options]="codigoTiempoUso" formControlName="codigo_tiempo_uso" optionLabel="label" optionValue="value"
+      placeholder="Codigo Tiempo de Uso"></p-dropdown>
+  </div>
+
+  <div class="field col-6">
+    <div class="flex flex-column">
+      <label for="total_luz"> Total de Luz </label>
+      <span for="total_luz"> {{totalLuz | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}</span>
+    </div>
+    <div class="flex flex-column">
+      <label for="total_depreciacion">Depreciación</label>
+      <span for="total_depreciacion">
+        {{totalDepreciacion | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}
+      </span>
+    </div>
+    <div class="flex flex-column">
+      <label for="total_depreciacion">Precio de Servicio</label>
+      <span for="total_depreciacion">
+        {{totalHorasServicio | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}
+      </span>
+    </div>
+
+  </div>
+  <div class="field col-6">
+    <label for="monto_total">Total</label>
+    <input pInputText id="monto_total" formControlName="monto_total" type="text" pKeyFilter="money" />
+  </div>
+
+  <button class="w-full m-y-16" mat-flat-button [disabled]="(this.form.invalid || this.operacion == 'vista')"
+    (click)="emitir()">
+    Enviar
+  </button>
+</form>

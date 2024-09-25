@@ -45,7 +45,7 @@ export class FormHerramientasComponent implements OnInit {
     codigo_moneda: ['GTQ', [Validators.required]],
     monto: [, [Validators.required]],
     consumo_electrico: [, [Validators.required]],
-    codigo_medida_electricidad: ['kW', [Validators.required]]
+    codigo_medida_electricidad: ['W', [Validators.required]]
   });
 
   constructor(

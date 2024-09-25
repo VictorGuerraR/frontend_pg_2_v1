@@ -7,7 +7,7 @@
   <div class="field col-6">
     <label>Moneda</label>
     <p-dropdown [options]="monedas" formControlName="codigo_moneda" optionLabel="label" optionValue="value"
-      placeholder="Moneda"></p-dropdown>
+      placeholder="Moneda" appendTo="body"></p-dropdown>
   </div>
 
   <div class="field col-6">
@@ -36,7 +36,7 @@
   </div>
 
   <div class="field col-6">
-    <label for="precio_kw">Precio de la luz (kW) </label>
+    <label for="precio_kw">Precio de la luz (kW/H) </label>
     <input pInputText id="precio_kw" formControlName="precio_kw" type="text" pKeyFilter="money" />
   </div>
 

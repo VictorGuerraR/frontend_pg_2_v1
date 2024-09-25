@@ -8,9 +8,10 @@ export class CatalogosService {
     private peticionesHttpsServ: PeticionesHttpsService
   ) { }
 
-  obtenerUsuarios() { return this.peticionesHttpsServ.httpsGet('/catalogo/usuarios') }
-  obtenerHerramientas() { return this.peticionesHttpsServ.httpsGet('/catalogo/herramientas') }
-  obtenerMateriasPrimas() { return this.peticionesHttpsServ.httpsGet('/catalogo/materiasPrimas') }
-  obtenerTipoDepreciacion() { return this.peticionesHttpsServ.httpsGet('/catalogo/tipoDepreciacion') }
+  obtenerUsuarios<T>() { return this.peticionesHttpsServ.httpsGet<T>('/catalogo/usuarios') }
+  obtenerHerramientas<T>() { return this.peticionesHttpsServ.httpsGet<T>('/catalogo/herramientas') }
+  obtenerCostoFijoHora<T>() { return this.peticionesHttpsServ.httpsGet<T>('/catalogo/costosFijos') }
+  obtenerMateriasPrimas<T>() { return this.peticionesHttpsServ.httpsGet<T>('/catalogo/materiasPrimas') }
+  obtenerTipoDepreciacion<T>() { return this.peticionesHttpsServ.httpsGet<T>('/catalogo/tipoDepreciacion') }
 
 }

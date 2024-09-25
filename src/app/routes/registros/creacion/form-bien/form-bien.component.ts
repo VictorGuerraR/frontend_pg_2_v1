@@ -52,7 +52,6 @@ export class FormBienComponent {
   ) { this.solicitarCatalogos() }
 
   ngOnInit(): void {
-    console.log(this.infoForm)
     if (this.infoForm) { this.form.patchValue(this.infoForm) }
 
     if (this.operacion === 'creacion') {
@@ -91,7 +90,6 @@ export class FormBienComponent {
         }
       });
   }
-
 
   solicitarCatalogos() {
     this.catalogoService.obtenerMateriasPrimas()

@@ -1,11 +1,13 @@
 <div class="flex flex-column gap-8">
   <toolbar [titulo]="mensaje()" [mostrarReturn]="false" [mostrarAgregar]="false">
-    <button pButton style="height: 30px;" label="Agregar Servicio"  class="gap-2" (click)="nuevoServicioFlag=true">
+    @if (codMaestro > 0 || soloLectura) {
+    <button pButton style="height: 30px;" label="Agregar Servicio" class="gap-2" (click)="nuevoServicioFlag=true">
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
     <button pButton style="height: 30px;" label="Agregar Bien" class="gap-2" (click)="nuevoBienFlag=true">
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
+    }
   </toolbar>
 
   <div class="flex flex-direction col-12 p-0">
@@ -19,18 +21,11 @@
     <div class="col-7 p-1">
       <p-tabView>
         <p-tabPanel header="Bienes">
-          <tabla-bienes 
-            [data-tabla]="infoTablaBienes" 
-            (eliminar)="eliminarBien($event)" 
-            (vista)="vistaBien($event)" 
-          />
+          <tabla-bienes [data-tabla]="infoTablaBienes" (eliminar)="eliminarBien($event)" (vista)="vistaBien($event)" />
         </p-tabPanel>
         <p-tabPanel header="Servicios">
-          <tabla-servicios 
-            [data-tabla]="infoTablaServicios" 
-            (eliminar)="eliminarServicio($event)" 
-            (vista)="vistaServicio($event)"
-          />
+          <tabla-servicios [data-tabla]="infoTablaServicios" (eliminar)="eliminarServicio($event)"
+            (vista)="vistaServicio($event)" />
         </p-tabPanel>
       </p-tabView>
     </div>
@@ -40,34 +35,43 @@
 </div>
 
 <!-- FORMULARIO DE BIEN -->
-<p-dialog 
-  header="Creación Bien" 
-  [modal]="true" 
-  [(visible)]="nuevoBienFlag" 
-  [style]="{ width: '30vw' }"
-  (onHide)="nuevoBienFlag=false"
->
+<p-dialog header="Creación Bien" [modal]="true" [(visible)]="nuevoBienFlag" [style]="{ width: '30vw' }"
+  (onHide)="nuevoBienFlag=false">
   <ng-template pTemplate="body">
-    <form-bien 
-      [informacionForm]="{cod_maestro: codMaestro}"
-      [tipo-operacion]="'creacion'"
-      (formulario)="operacionDetalles('bienes', 'creacion', $event)"
-    ></form-bien>
+    <form-bien [informacionForm]="{cod_maestro: codMaestro}" [tipo-operacion]="'creacion'"
+      (formulario)="operacionDetalles('bienes', 'creacion', $event)"></form-bien>
   </ng-template>
 </p-dialog>
 
-<p-dialog 
-  header="Vista Bien" 
-  [modal]="true" 
-  [(visible)]="vistaBienFlag" 
-  [style]="{ width: '30vw' }"
-  (onHide)="vistaBienFlag=false"
->
+<p-dialog header="Vista Bien" [modal]="true" [(visible)]="vistaBienFlag" [style]="{ width: '30vw' }"
+  (onHide)="vistaBienFlag=false">
   <ng-template pTemplate="body">
-    <form-bien 
-      [informacionForm]="bienSeleccionado"
+    <form-bien [informacionForm]="bienSeleccionado" [tipo-operacion]="'vista'"></form-bien>
+  </ng-template>
+</p-dialog>
+
+<!-- FORMULARIO DE SERVICIO -->
+<p-dialog header="Creación Servicio" [modal]="true" [(visible)]="nuevoServicioFlag" [style]="{ width: '30vw' }"
+  (onHide)="nuevoServicioFlag=false">
+  <ng-template pTemplate="body">
+    <form-servicio 
+      [precio_kw]="infoForm.precio_kw"
+      [informacionForm]="{cod_maestro: codMaestro}" 
+      [tipo-operacion]="'creacion'"
+      (formulario)="operacionDetalles('servicios', 'creacion', $event)"
+    >
+    </form-servicio>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="Vista Servicio" [modal]="true" [(visible)]="vistaServiciosFlag" [style]="{ width: '30vw' }"
+  (onHide)="vistaServiciosFlag=false">
+  <ng-template pTemplate="body">
+    <form-servicio 
+      [precio_kw]="infoForm.precio_kw"
+      [informacionForm]="servicioSeleccionado" 
       [tipo-operacion]="'vista'"
-      (formulario)="operacionDetalles('bienes', 'creacion', $event)"
-    ></form-bien>
+    >
+    </form-servicio>
   </ng-template>
 </p-dialog>

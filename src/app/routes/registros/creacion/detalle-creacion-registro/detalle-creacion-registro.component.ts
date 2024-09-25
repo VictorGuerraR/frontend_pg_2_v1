@@ -43,7 +43,7 @@ export class DetalleCreacionRegistroComponent implements OnInit {
   infoTablaBienes: any = []
   infoTablaServicios: any = []
   bienSeleccionado: any = null
-  ServicioSeleccionado: any = null
+  servicioSeleccionado: any = null
 
   soloLectura: boolean = false;
   nuevoBienFlag: boolean = false;
@@ -112,11 +112,10 @@ export class DetalleCreacionRegistroComponent implements OnInit {
       })
   }
 
-
   vistaBien(data: any) { this.bienSeleccionado = data; this.vistaBienFlag = true }
   eliminarBien({ cod_detalle_bien }: any) { this.operacionDetalles('bienes', 'eliminacion', { cod_detalle_bien }) }
 
-  vistaServicio(data: any) { this.ServicioSeleccionado = data; this.vistaServiciosFlag = true }
+  vistaServicio(data: any) { this.servicioSeleccionado = data; this.vistaServiciosFlag = true }
   eliminarServicio({ cod_detalle_servicio }: any) { this.operacionDetalles('servicios', 'eliminacion', { cod_detalle_servicio }) }
 
   mensaje() {
@@ -130,6 +129,5 @@ export class DetalleCreacionRegistroComponent implements OnInit {
     else if (this.codMaestro > 0 && this.soloLectura == true) { return "vista" }
     else { return "creacion" }
   }
-
 
 }
