@@ -70,7 +70,7 @@ export class DetalleCreacionRegistroComponent implements OnInit {
 
   async solicitarInformacion() {
     this.registrosServ.obtenerEncabezadoMaestro({ cod_maestro: this.codMaestro })
-      .then((res: any) => { this.infoForm = res?.[0] })
+      .then((res: any) => this.infoForm = res?.[0])
       .catch(() => this.infoForm = null)
     this.solicitarInformacionTablas('bienes', { cod_maestro: this.codMaestro, activo: true })
     this.solicitarInformacionTablas('servicios', { cod_maestro: this.codMaestro, activo: true })
@@ -108,7 +108,7 @@ export class DetalleCreacionRegistroComponent implements OnInit {
         if (this.vistaBienFlag) this.vistaBienFlag = !this.vistaBienFlag;
         if (this.nuevoServicioFlag) this.nuevoServicioFlag = !this.nuevoServicioFlag;
         if (this.vistaServiciosFlag) this.vistaServiciosFlag = !this.vistaServiciosFlag;
-        this.solicitarInformacionTablas(strategy)
+        this.solicitarInformacion()
       })
   }
 

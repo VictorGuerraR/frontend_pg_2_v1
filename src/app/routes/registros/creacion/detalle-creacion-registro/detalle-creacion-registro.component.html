@@ -1,6 +1,6 @@
 <div class="flex flex-column gap-8">
   <toolbar [titulo]="mensaje()" [mostrarReturn]="false" [mostrarAgregar]="false">
-    @if (codMaestro > 0 || soloLectura) {
+    @if (codMaestro > 0 && !soloLectura) {
     <button pButton style="height: 30px;" label="Agregar Servicio" class="gap-2" (click)="nuevoServicioFlag=true">
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
@@ -21,11 +21,20 @@
     <div class="col-7 p-1">
       <p-tabView>
         <p-tabPanel header="Bienes">
-          <tabla-bienes [data-tabla]="infoTablaBienes" (eliminar)="eliminarBien($event)" (vista)="vistaBien($event)" />
+          <tabla-bienes 
+            [soloLectura]="soloLectura" 
+            [data-tabla]="infoTablaBienes" 
+            (eliminar)="eliminarBien($event)" 
+            (vista)="vistaBien($event)" 
+          />
         </p-tabPanel>
         <p-tabPanel header="Servicios">
-          <tabla-servicios [data-tabla]="infoTablaServicios" (eliminar)="eliminarServicio($event)"
-            (vista)="vistaServicio($event)" />
+          <tabla-servicios 
+            [soloLectura]="soloLectura" 
+            [data-tabla]="infoTablaServicios" 
+            (eliminar)="eliminarServicio($event)"
+            (vista)="vistaServicio($event)" 
+          />
         </p-tabPanel>
       </p-tabView>
     </div>
@@ -46,7 +55,11 @@
 <p-dialog header="Vista Bien" [modal]="true" [(visible)]="vistaBienFlag" [style]="{ width: '30vw' }"
   (onHide)="vistaBienFlag=false">
   <ng-template pTemplate="body">
-    <form-bien [informacionForm]="bienSeleccionado" [tipo-operacion]="'vista'"></form-bien>
+    <form-bien 
+      [informacionForm]="bienSeleccionado" 
+      [tipo-operacion]="'vista'"
+    >
+    </form-bien>
   </ng-template>
 </p-dialog>
 

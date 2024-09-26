@@ -28,21 +28,21 @@
       placeholder="Codigo Tiempo de Uso"></p-dropdown>
   </div>
 
-  <div class="field col-6">
+  <div class="field col-6 flex flex-column gap-2">
     <div class="flex flex-column">
-      <label for="total_luz"> Total de Luz </label>
-      <span for="total_luz"> {{totalLuz | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}</span>
+      <label for="total_consumo_energetico"> Total de Luz </label>
+      <span for="total_consumo_energetico"> {{form.get('total_consumo_energetico')?.value | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}</span>
     </div>
     <div class="flex flex-column">
       <label for="total_depreciacion">Depreciación</label>
       <span for="total_depreciacion">
-        {{totalDepreciacion | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}
+        {{form.get('total_depreciacion')?.value | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}
       </span>
     </div>
     <div class="flex flex-column">
-      <label for="total_depreciacion">Precio de Servicio</label>
-      <span for="total_depreciacion">
-        {{totalHorasServicio | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}
+      <label for="total_horas_servicio">Precio de Servicio</label>
+      <span for="total_horas_servicio">
+        {{form.get('total_horas_servicio')?.value | number: '1.2-2'}} {{form.get('codigo_moneda')?.value}}
       </span>
     </div>
 

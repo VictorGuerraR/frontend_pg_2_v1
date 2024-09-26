@@ -55,7 +55,7 @@ export class DetalleRegistrosComponent {
     const { cod_maestro } = data
     this.router.navigate(
       ['sistema', 'registros', 'creacion', cod_maestro, soloLectura],
-      { skipLocationChange: soloLectura }
+      // { skipLocationChange: soloLectura }
     )
   }
 

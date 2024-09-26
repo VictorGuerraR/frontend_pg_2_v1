@@ -39,10 +39,6 @@ export class FormServicioComponent implements OnInit {
   herramientas: any[] = [];
   costoHoraServicio: any[] = []
 
-  totalLuz: number = 0
-  totalDepreciacion: number = 0
-  totalHorasServicio: number = 0
-
   form = this.fb.group({
     cod_detalle_servicio: null,
     cod_herramienta: [null, [Validators.required]],
@@ -52,6 +48,9 @@ export class FormServicioComponent implements OnInit {
     descripcion: [null, [Validators.required]],
     monto_total: [0, [Validators.required]],
     tiempo_uso: [0, [Validators.required]],
+    total_consumo_energetico: [0, [Validators.required]],
+    total_depreciacion: [0, [Validators.required]],
+    total_horas_servicio: [0, [Validators.required]],
   });
 
   constructor(
@@ -80,21 +79,28 @@ export class FormServicioComponent implements OnInit {
 
   calculos() {
     const herramienta = this.herramientas.find((h) => h.cod_herramienta === this.form.get('cod_herramienta')?.value);
+
     if (herramienta) {
       const tiempoDeUso = Number(this.form.get('tiempo_uso')?.value || '0');
-      const potenciaElectrica = Number(herramienta.consumo_electrico);
+      const potenciaElectrica = Number(herramienta.consumo_electrico || 0); // Asegurarse de que no sea null o undefined
       const consumoTotal = (potenciaElectrica * tiempoDeUso) / 1000; // Consumo en kWh
-      this.totalLuz = consumoTotal * this.precioLuz;
+      this.form.get('total_consumo_energetico')?.setValue(consumoTotal * this.precioLuz);
 
-      const total_depreciacion = Number(herramienta.monto) / Number(herramienta.porcentaje_depreciacion_anual);
+      const total_depreciacion = Number(herramienta.monto || 0) / Number(herramienta.porcentaje_depreciacion_anual || 1);
       const depreciacionPorHora = total_depreciacion / 8784; // 8784 horas en un año
-      this.totalDepreciacion = depreciacionPorHora * tiempoDeUso;
+      this.form.get('total_depreciacion')?.setValue(depreciacionPorHora * tiempoDeUso);
 
-      // this.totalPrecioServicio = 
-      const { costo_hora } = this.costoHoraServicio.find((c) => c.codigo_moneda = this.form.get('codigo_moneda')?.value)
-      this.totalHorasServicio = (costo_hora * tiempoDeUso) / 10
+      const costoHoraServicio = this.costoHoraServicio.find((c) => c.codigo_moneda === this.form.get('codigo_moneda')?.value);
+      if (costoHoraServicio) {
+        const costo_hora = Number(costoHoraServicio.costo_hora || 0);
+        this.form.get('total_horas_servicio')?.setValue((costo_hora * tiempoDeUso) / 10);
+      }
 
-      const montoTotal = (this.totalLuz + this.totalDepreciacion + this.totalHorasServicio).toFixed(2);
+      const totalConsumoEnergetico = Number(this.form.get('total_consumo_energetico')?.value || 0);
+      const totalDepreciacion = Number(this.form.get('total_depreciacion')?.value || 0);
+      const totalHorasServicio = Number(this.form.get('total_horas_servicio')?.value || 0);
+
+      const montoTotal = (totalConsumoEnergetico + totalDepreciacion + totalHorasServicio).toFixed(2);
       this.form.get('monto_total')?.setValue(Number(montoTotal));
     }
   }
@@ -103,7 +109,6 @@ export class FormServicioComponent implements OnInit {
     try {
       this.herramientas = await this.catalogoService.obtenerHerramientas();
       this.costoHoraServicio = await this.catalogoService.obtenerCostoFijoHora();
-      this.calculos();
     } catch {
       this.herramientas = [];
       this.costoHoraServicio = [];

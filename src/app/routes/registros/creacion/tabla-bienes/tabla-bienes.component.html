@@ -29,10 +29,13 @@
         <button pButton class="custom-button" title="Visualización" severity="info" (click)="vista.emit(data)">
           <fa-icon [icon]="['fas', 'eye']"></fa-icon>
         </button>
+        @if(!soloLectura){
         <button pButton class="custom-button" title="Eliminación" severity="danger"
           (click)="eliminarConfirmacion($event,data)">
           <fa-icon [icon]="['fas', 'trash-alt']"></fa-icon>
         </button>
+        }
+
       </td>
     </tr>
   </ng-template>

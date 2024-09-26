@@ -11,6 +11,16 @@
   </div>
 
   <div class="field col-6">
+    <label for="gran_total">Gran Total</label>
+    <input pInputText id="gran_total" formControlName="gran_total" type="text" pKeyFilter="money" />
+  </div>
+
+  <div class="field col-6">
+    <label for="precio_kw">Precio de la luz (kW/H) </label>
+    <input pInputText id="precio_kw" formControlName="precio_kw" type="text" pKeyFilter="money" />
+  </div>
+
+  <div class="field col-6">
     <label for="monto_total">Total de Servicios</label>
     <input pInputText id="monto_total" formControlName="monto_total" type="text" pKeyFilter="money" />
   </div>
@@ -33,11 +43,6 @@
   <div class="field col-6">
     <label for="monto_impuesto">Impuesto</label>
     <input pInputText id="monto_impuesto" formControlName="monto_impuesto" type="text" pKeyFilter="money" />
-  </div>
-
-  <div class="field col-6">
-    <label for="precio_kw">Precio de la luz (kW/H) </label>
-    <input pInputText id="precio_kw" formControlName="precio_kw" type="text" pKeyFilter="money" />
   </div>
 
   <button class="w-full m-y-16" mat-flat-button [disabled]="(this.form.invalid || this.operacion == 'vista')"

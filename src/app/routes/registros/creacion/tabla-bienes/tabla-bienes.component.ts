@@ -31,8 +31,9 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 })
 export class TablaBienesComponent {
 
+  @Input({ required: true }) soloLectura: boolean = false
   @Input({ required: true, alias: 'data-tabla' }) data: any = []
-  @Output() vista: EventEmitter<any> = new EventEmitter(); 
+  @Output() vista: EventEmitter<any> = new EventEmitter();
   @Output() eliminar: EventEmitter<any> = new EventEmitter();
 
   constructor(
