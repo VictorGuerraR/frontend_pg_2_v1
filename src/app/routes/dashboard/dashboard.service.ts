@@ -1,96 +1,18 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ApexOptions } from 'apexcharts';
+import { Injectable } from '@angular/core';
+import { PeticionesHttpsService } from '@servicesTools/tools'
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+export interface Stat {
+  title: string;
+  amount: string;
+  progress: {
+    value: number;
+  };
+  color: string;
 }
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];
-
-const MESSAGES = [
-  {
-    // img: 'images/heros/1.jpg',
-    subject: 'Hydrogen',
-    content: `Cras sit amet nibh libero, in gravida nulla.
-     Nulla vel metus scelerisque ante sollicitudin commodo.`,
-  },
-  {
-    // img: 'images/heros/2.jpg',
-    subject: 'Helium',
-    content: `Cras sit amet nibh libero, in gravida nulla.
-     Nulla vel metus scelerisque ante sollicitudin commodo.`,
-  },
-  {
-    // img: 'images/heros/3.jpg',
-    subject: 'Lithium',
-    content: `Cras sit amet nibh libero, in gravida nulla.
-     Nulla vel metus scelerisque ante sollicitudin commodo.`,
-  },
-  {
-    // img: 'images/heros/4.jpg',
-    subject: 'Beryllium',
-    content: `Cras sit amet nibh libero, in gravida nulla.
-     Nulla vel metus scelerisque ante sollicitudin commodo.`,
-  },
-  {
-    // img: 'images/heros/6.jpg',
-    subject: 'Boron',
-    content: `Cras sit amet nibh libero, in gravida nulla.
-     Nulla vel metus scelerisque ante sollicitudin commodo.`,
-  },
-];
 
 @Injectable()
 export class DashboardService {
-  stats = [
-    {
-      title: 'Total Sales',
-      amount: '180,200',
-      progress: {
-        value: 50,
-      },
-      color: 'bg-azure-50',
-    },
-    {
-      title: 'Revenue',
-      amount: '70,205',
-      progress: {
-        value: 70,
-      },
-      color: 'bg-blue-50',
-    },
-    {
-      title: 'Traffic',
-      amount: '1,291,922',
-      progress: {
-        value: 80,
-      },
-      color: 'bg-green-50',
-    },
-    {
-      title: 'New User',
-      amount: '1,922',
-      progress: {
-        value: 40,
-      },
-      color: 'bg-cyan-50',
-    },
-  ];
 
   charts: ApexOptions[] = [
     {
@@ -187,21 +109,12 @@ export class DashboardService {
     },
   ];
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private peticionesHttpsServ: PeticionesHttpsService
+  ) { }
 
-  getData() {
-    return ELEMENT_DATA;
-  }
+  obtenerGraficaStats() { return this.peticionesHttpsServ.httpsGet('/graficas-1') }
 
-  getMessages() {
-    return MESSAGES;
-  }
+  getCharts() { return this.charts; }
 
-  getCharts() {
-    return this.charts;
-  }
-
-  getStats() {
-    return this.stats;
-  }
 }

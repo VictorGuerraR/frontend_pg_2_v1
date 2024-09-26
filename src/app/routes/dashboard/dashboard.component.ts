@@ -1,23 +1,22 @@
-import { Subscription } from 'rxjs';
-import { RouterLink } from '@angular/router';
+import { AfterViewInit, Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { BreadcrumbComponent } from '@shared';
-import { SettingsService } from '@core';
-import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
-import { MatTabsModule } from '@angular/material/tabs';
-import { DashboardService } from './dashboard.service';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatTableModule } from '@angular/material/table';
+import { DashboardService, Stat } from './dashboard.service';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatListModule } from '@angular/material/list';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MtxProgressModule } from '@ng-matero/extensions/progress';
-import { AfterViewInit, ChangeDetectionStrategy, Component, NgZone, OnDestroy, OnInit, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { SettingsService } from '@core';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [DashboardService],
   standalone: true,
   imports: [
@@ -34,23 +33,23 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, NgZone, OnDestroy, O
   ],
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
-  private readonly ngZone = inject(NgZone);
-  private readonly settings = inject(SettingsService);
-  private readonly dashboardSrv = inject(DashboardService);
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = this.dashboardSrv.getData();
-  messages = this.dashboardSrv.getMessages();
   charts = this.dashboardSrv.getCharts();
   chart1?: ApexCharts;
   chart2?: ApexCharts;
-  stats = this.dashboardSrv.getStats();
+  stats: Stat[] = [];
   notifySubscription = Subscription.EMPTY;
 
+  constructor(
+    private readonly ngZone: NgZone,
+    private readonly settings: SettingsService,
+    private readonly dashboardSrv: DashboardService,
+  ) { }
+
   ngOnInit() {
-    this.notifySubscription = this.settings.notify.subscribe(opts => {
-      this.updateCharts(opts);
-    });
+    this.dashboardSrv.obtenerGraficaStats().then((res: any) => this.stats = res)
+    this.notifySubscription = this.settings.notify.subscribe(opts => this.updateCharts(opts))
   }
 
   ngAfterViewInit() { this.ngZone.runOutsideAngular(() => this.initCharts()); }
