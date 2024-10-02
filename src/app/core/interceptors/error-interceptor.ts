@@ -8,7 +8,6 @@ export enum STATUS {
   UNAUTHORIZED = 401,
   FORBIDDEN = 403,
   NOT_FOUND = 404,
-  I_AM_TEAPOD = 418,
   INTERNAL_SERVER_ERROR = 500,
 }
 
@@ -44,7 +43,6 @@ export class ErrorInterceptor implements HttpInterceptor {
       });
     } else {
       console.error('ERROR', error);
-      this.toast.error(this.getMessage(error));
       if (error.status === STATUS.UNAUTHORIZED) {
         this.router.navigateByUrl('/auth/login');
       }
