@@ -42,7 +42,7 @@ export class DetalleMateriasPrimasComponent {
   ngOnInit(): void { this.solicitarInformacion({ activo: true }) }
 
   async solicitarInformacion(params = {}) {
-    await this.materiasPrimasServ.obtenerHerramientas(params)
+    await this.materiasPrimasServ.obtenerMateriasPrimas(params)
       .then(({ respuesta }: any) => {
         const { pageInformation, results } = respuesta
         this.materiasPrimas = results
@@ -63,7 +63,7 @@ export class DetalleMateriasPrimasComponent {
   edicion(data: any) { this.materiasPrimasSeleccionada = data; this.edicionFlag = true; }
 
   async creacion(data: any) {
-    await this.materiasPrimasServ.crearHerramientas(data)
+    await this.materiasPrimasServ.crearMateriasPrimas(data)
       .then(() => {
         this.toastServ.success('Se ha creado el registro.', 'Creación')
         this.nuevoFlag = false
@@ -73,7 +73,7 @@ export class DetalleMateriasPrimasComponent {
   }
 
   async actualizacion(data: any) {
-    await this.materiasPrimasServ.actualizarHerramientas(data)
+    await this.materiasPrimasServ.actualizarMateriasPrimas(data)
       .then(() => {
         this.toastServ.info('Se ha actualizado el registro.', 'Actualización')
         this.edicionFlag = false
@@ -84,7 +84,7 @@ export class DetalleMateriasPrimasComponent {
 
   async eliminacion(data: any) {
     const { cod_materia_prima } = data
-    await this.materiasPrimasServ.eliminarHerramientas({ cod_materia_prima })
+    await this.materiasPrimasServ.eliminarMateriasPrimas({ cod_materia_prima })
       .then(() => this.toastServ.warning('Se ha eliminado el registro.', 'Eliminación'))
       .catch(() => this.toastServ.error('No fue posible eliminar el registro.', 'Error en Eliminación'))
       .finally(() => this.solicitarInformacion({ activo: true }))

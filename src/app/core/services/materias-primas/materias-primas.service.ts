@@ -1,14 +1,13 @@
-import { Injectable } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
-import { Paginacion } from '@interfaces/pagination'
-import { PeticionesHttpsService } from '@servicesTools/tools'
+import { Injectable } from '@angular/core'; 
+import { Paginacion } from '@interfaces/pagination';
+import { PeticionesHttpsService } from '@servicesTools/tools';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MateriasPrimasService {
 
-  private endpointHerramientas = {
+  private endpointMateriasPrimas = {
     get: '/materias-primas',
     post: '/materias-primas',
     patch: '/materias-primas',
@@ -19,20 +18,20 @@ export class MateriasPrimasService {
     private peticionesHttpsServ: PeticionesHttpsService
   ) { }
 
-  obtenerHerramientas(params: any) {
-    return this.peticionesHttpsServ.httpsGet<Paginacion<any>>(this.endpointHerramientas['get'], params)
+  obtenerMateriasPrimas(params: any) {
+    return this.peticionesHttpsServ.httpsGet<Paginacion<any>>(this.endpointMateriasPrimas['get'], params);
   }
 
-  crearHerramientas(herramienta: any) {
-    return this.peticionesHttpsServ.httpsPost(this.endpointHerramientas['post'], herramienta)
+  crearMateriasPrimas(materiaPrima: any) {
+    return this.peticionesHttpsServ.httpsPost(this.endpointMateriasPrimas['post'], materiaPrima);
   }
 
-  actualizarHerramientas(herramienta: any) {
-    return this.peticionesHttpsServ.httpsPatch(this.endpointHerramientas['patch'], herramienta)
+  actualizarMateriasPrimas(materiaPrima: any) {
+    return this.peticionesHttpsServ.httpsPatch(this.endpointMateriasPrimas['patch'], materiaPrima);
   }
 
-  eliminarHerramientas(herramienta: any) {
-    return this.peticionesHttpsServ.httpsDelete(this.endpointHerramientas['delete'], herramienta)
+  eliminarMateriasPrimas(materiaPrima: any) {
+    return this.peticionesHttpsServ.httpsDelete(this.endpointMateriasPrimas['delete'], materiaPrima);
   }
 
 }
