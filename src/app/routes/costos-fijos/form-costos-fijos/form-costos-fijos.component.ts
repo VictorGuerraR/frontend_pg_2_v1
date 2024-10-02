@@ -32,11 +32,12 @@ export class FormCostosFijosComponent implements OnInit {
   monedas: any[] = [{ label: 'Quetzales', value: 'GTQ' }]
 
   form = this.fb.group({
-    cod_costo_fijo: null,
-    descripcion: [, [Validators.required]],
+    cod_costo_fijo: 0,
+    descripcion: ["", [Validators.required]],
     codigo_moneda: ['GTQ', [Validators.required]],
-    monto_total: [, [Validators.required]]
+    monto_total: [0, [Validators.required]]
   });
+
 
   constructor(
     private fb: FormBuilder
