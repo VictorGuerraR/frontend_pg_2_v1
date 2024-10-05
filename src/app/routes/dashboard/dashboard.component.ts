@@ -49,10 +49,10 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.dashboardSrv.obtenerGraficaStats().then((res: any) => this.stats = res)
-    this.notifySubscription = this.settings.notify.subscribe(opts => this.updateCharts(opts))
+    // this.notifySubscription = this.settings.notify.subscribe(opts => this.updateCharts(opts))
   }
 
-  ngAfterViewInit() { this.ngZone.runOutsideAngular(() => this.initCharts()); }
+  ngAfterViewInit() { /* this.ngZone.runOutsideAngular(() => this.initCharts()); */ }
 
   ngOnDestroy() {
     this.chart1?.destroy();
