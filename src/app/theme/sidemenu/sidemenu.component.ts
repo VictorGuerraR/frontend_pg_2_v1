@@ -13,8 +13,6 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { Input, inject, Component, ViewEncapsulation, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { faDashboard, faWrench, faCogs, faDollarSign, faReceipt, faUserCircle } from '@fortawesome/free-solid-svg-icons';
 
-
-
 @Component({
   selector: 'app-sidemenu',
   templateUrl: './sidemenu.component.html',
@@ -81,6 +79,24 @@ export class SidemenuComponent implements OnInit {
       name: 'Registros',
       type: 'link',
       icon: ['fas', 'receipt']
+    },
+    {
+      route: 'reportes',
+      name: 'Reportes',
+      type: 'sub',
+      icon: ['fas', 'receipt'],
+      children: [
+        {
+          route: 'depreciacion',
+          name: 'Depreciacion',
+          type: 'link',
+        },
+        {
+          route: 'ganancia',
+          name: 'Ganancia',
+          type: 'link',
+        }
+      ]
     }
   ];
 

@@ -57,7 +57,12 @@ export class MenuService {
     let route = '';
     routeArr.forEach(item => {
       if (item && item.trim()) {
-        route += '/sistema/' + item.replace(/^\/+|\/+$/g, '');
+        // Verifica si el item ya contiene 'sistema' en cualquier parte de la ruta
+        if (!/\/sistema(\/|$)/.test(route)) {
+          route += '/sistema/' + item.replace(/^\/+|\/+$/g, '');
+        } else {
+          route += '/' + item.replace(/^\/+|\/+$/g, '');
+        }
       }
     });
     return route;
