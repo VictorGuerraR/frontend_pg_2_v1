@@ -1,1 +1,53 @@
-<p>depreciacion works!</p>
+<p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" [scrollable]="true"
+  styleClass="p-datatable-striped white-space-nowrap text-overflow-ellipsis">
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="fecha_adquisicion">
+        Fecha Creación <p-sortIcon field="fecha_adquisicion" />
+      </th>
+      <th pSortableColumn="usuario_responsable">
+        Creado por <p-sortIcon field="usuario_responsable" />
+      </th>
+      <th pSortableColumn="descripcion">
+        Descripción <p-sortIcon field="descripcion" />
+      </th>
+      <th pSortableColumn="codigo_moneda">
+        Moneda <p-sortIcon field="codigo_moneda" />
+      </th>
+      <th pSortableColumn="monto">
+        Monto <p-sortIcon field="monto" />
+      </th>
+      <th pSortableColumn="depreciacion_maquinaria">
+        Depreciacion por Servicios <p-sortIcon field="depreciacion_maquinaria" />
+      </th>
+      <th pSortableColumn="servicios_brindados">
+        Servicios brindados<p-sortIcon field="servicios_brindados" />
+      </th>
+      <th pSortableColumn="porcentaje_depreciacion_herramienta" alignFrozen="right" pFrozenColumn [frozen]="true">
+        Porcentaje Depreciacion<p-sortIcon field="porcentaje_depreciacion_herramienta" />
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-data>
+    <tr>
+      <td>{{data.fecha_adquisicion | date:'dd/MM/yyyy'}}</td>
+      <td>{{data.usuario_responsable }}</td>
+      <td>{{data.descripcion}} </td>
+      <td>{{data.codigo_moneda}} </td>
+      <td>{{data.monto | number:'1.2-2'}} </td>
+      <td>{{data.depreciacion_maquinaria | number:'1.2-2'}} </td>
+      <td>{{data.servicios_brindados }} </td>
+      <td alignFrozen="right" pFrozenColumn [frozen]="true" class="justify-content-center"
+        style="display: flex; gap: 0.5rem;">
+        <div class="card">
+          <p-progressBar [value]="50" />
+        </div>
+      </td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="8">No se encontraron registros.</td>
+    </tr>
+  </ng-template>
+</p-table>

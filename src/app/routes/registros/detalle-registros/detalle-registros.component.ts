@@ -18,7 +18,7 @@ import { TablaRegistrosComponent } from "../tabla-registros/tabla-registros.comp
   templateUrl: './detalle-registros.component.html',
   styles: ``
 })
-export class DetalleRegistrosComponent {
+export class DetalleRegistrosComponent implements OnInit {
   private readonly router = inject(Router)
   private readonly toastServ = inject(ToastrService)
   private readonly registrosServ = inject(RegistrosService);

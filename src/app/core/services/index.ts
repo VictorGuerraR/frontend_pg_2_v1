@@ -1,4 +1,5 @@
 export * from './usuarios/usuarios.service'
+export * from './reportes/reportes.services'
 export * from './registros/registros.service'
 export * from './registros/detalle-bien.service'
 export * from './costos-fijos/costos-fijos.service'
