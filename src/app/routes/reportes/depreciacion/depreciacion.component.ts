@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReportesService } from '@core/services'
 import { ProgressBarModule } from 'primeng/progressbar';
 import { Component, inject, OnInit } from '@angular/core';
+import { ToolbarComponent } from "@shared/components/toolbar/toolbar.component";
 
 @Component({
   selector: 'depreciacion',
@@ -12,6 +13,7 @@ import { Component, inject, OnInit } from '@angular/core';
   imports: [
     TableModule,
     CommonModule,
+    ToolbarComponent,
     ProgressBarModule
   ],
 })
@@ -22,12 +24,9 @@ export class DepreciacionComponent implements OnInit {
 
   ngOnInit(): void { this.solicitarInformacion() }
 
-  async solicitarInformacion(params = {}) {
+  async solicitarInformacion() {
     await this.reportesServ.obtenerReporteDepreciacion()
-      .then((respuesta: any) => {
-        console.log(respuesta)
-        this.data = respuesta
-      })
+      .then((respuesta: any) => this.data = respuesta)
       .catch(() => this.data = [])
   }
 

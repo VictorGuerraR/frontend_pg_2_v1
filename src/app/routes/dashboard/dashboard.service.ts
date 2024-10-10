@@ -113,7 +113,7 @@ export class DashboardService {
     private peticionesHttpsServ: PeticionesHttpsService
   ) { }
 
-  obtenerGraficaStats() { return this.peticionesHttpsServ.httpsGet('/graficas-1') }
+  obtenerGraficaStats(params: any) { return this.peticionesHttpsServ.httpsGet('/graficas-1', params) }
 
   getCharts() { return this.charts; }
 

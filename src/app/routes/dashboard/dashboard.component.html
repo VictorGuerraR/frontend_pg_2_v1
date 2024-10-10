@@ -1,24 +1,36 @@
-<div class="row">
+<div class="flex flex-column gap-8">
+  <toolbar [titulo]="'Panel de Control'" [mostrarAgregar]="false">
+    <form [formGroup]="form" class="p-0 m-0">
+      <p-calendar formControlName="fecha_creacion" dateFormat="dd/mm/yy" [showIcon]="true" selectionMode="range"
+        [readonlyInput]="true" />
+    </form>
+    <button pButton class="custom-button" (click)="solicitarInformacion()" [disabled]="this.form.invalid"
+      title="Busqueda">
+      <fa-icon [icon]="['fas', 'search']"></fa-icon>
+    </button>
+  </toolbar>
 
-  <!-- Statistics -->
-  @for (stat of stats; track stat) {
-  <div class="col-sm-6 col-md-3">
-    <mat-card [class]="['text-white', stat.color]">
-      <mat-card-header>
-        <mat-card-subtitle class="text-white">{{stat.title}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <h2 class="m-t-0 m-b-8">{{stat.amount}}</h2>
-        <mtx-progress [value]="stat.progress.value" height="2px" foreground="rgba(255,255,255,1)"
-          background='rgba(0,0,0,.4)' />
-        <small class="text-muted">Mes Actual</small>
-      </mat-card-content>
-    </mat-card>
-  </div>
-  }
+  <div class="row">
 
-  <!-- Charts -->
-  <!-- <div class="col-md-7">
+    <!-- Statistics -->
+    @for (stat of stats; track stat) {
+    <div class="col-sm-6 col-md-3">
+      <mat-card [class]="['text-white', stat.color]">
+        <mat-card-header>
+          <mat-card-subtitle class="text-white">{{stat.title}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <h2 class="m-t-0 m-b-8">{{stat.amount}}</h2>
+          <mtx-progress [value]="stat.progress.value" height="2px" foreground="rgba(255,255,255,1)"
+            background='rgba(0,0,0,.4)' />
+          <small class="text-muted">Mes Actual</small>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    }
+
+    <!-- Charts -->
+    <!-- <div class="col-md-7">
     <mat-card>
       <mat-card-header>
         <mat-card-title>Traffic</mat-card-title>
@@ -39,4 +51,5 @@
     </mat-card>
   </div> -->
 
+  </div>
 </div>

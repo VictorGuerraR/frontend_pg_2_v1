@@ -38,7 +38,6 @@ export class FormCostosFijosComponent implements OnInit {
     monto_total: [0, [Validators.required]]
   });
 
-
   constructor(
     private fb: FormBuilder
   ) { }

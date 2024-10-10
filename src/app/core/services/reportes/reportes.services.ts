@@ -12,4 +12,8 @@ export class ReportesService {
     return this.peticionesHttpsServ.httpsGet('/reportes-depreciacion');
   }
 
+  obtenerReporteGananciaPorUsuario(params: any) {
+    return this.peticionesHttpsServ.httpsGet('/reportes-ganancias', params);
+  }
+
 }

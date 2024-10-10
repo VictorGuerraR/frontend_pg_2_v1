@@ -1,1 +1,60 @@
-<p>ganancia works!</p>
+<div class="flex flex-column gap-8">
+  <toolbar [titulo]="'Reporte de Ganancia por Usuario'" [mostrarAgregar]="false">
+    <form [formGroup]="form" class="p-0 m-0">
+      <p-calendar formControlName="fecha_creacion" dateFormat="dd/mm/yy" [showIcon]="true" selectionMode="range"
+        [readonlyInput]="true" />
+    </form>
+    <button pButton class="custom-button" (click)="solicitarInformacion()" [disabled]="this.form.invalid"
+      title="Busqueda">
+      <fa-icon [icon]="['fas', 'search']"></fa-icon>
+    </button>
+  </toolbar>
+
+  <p-table [value]="data" [tableStyle]="{ 'min-width': '50rem' }" [scrollable]="true"
+    styleClass="p-datatable-striped white-space-nowrap text-overflow-ellipsis">
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="usuario">
+          Usuario<p-sortIcon field="usuario" />
+        </th>
+        <th pSortableColumn="codigo_moneda">
+          Moneda <p-sortIcon field="codigo_moneda" />
+        </th>
+        <th pSortableColumn="ganancia">
+          Ganancia <p-sortIcon field="ganancia" />
+        </th>
+        <th pSortableColumn="impuesto">
+          Impuestos <p-sortIcon field="impuesto" />
+        </th>
+        <th pSortableColumn="cobertura_costos">
+          Cobertura costos<p-sortIcon field="cobertura_costos" />
+        </th>
+        <th pSortableColumn="cobertura_costos_porcentaje" alignFrozen="right" pFrozenColumn [frozen]="true">
+          Porcentaje cobertura<p-sortIcon field="cobertura_costos_porcentaje" />
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-data>
+      <tr>
+        <td>{{data.usuario }}</td>
+        <td>{{data.codigo_moneda}} </td>
+        <td>{{data.ganancia | number:'1.2-2'}} </td>
+        <td>{{data.impuesto | number:'1.2-2'}} </td>
+        <td>{{data.cobertura_costos | number:'1.2-2'}} </td>
+        <td alignFrozen="right" pFrozenColumn [frozen]="true" class="justify-content-center"
+          style="display: flex; gap: 0.5rem;">
+          <div class="flex flex-row w-full justify-content-evenly align-items-center">
+            <p-progressBar [value]="data.cobertura_costos_porcentaje" mode="determinate" [showValue]="false"
+              [style]="{'height': '16px', 'width': '86px'}" />
+            <p> {{data.cobertura_costos_porcentaje}} % </p>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="8">No se encontraron registros.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
