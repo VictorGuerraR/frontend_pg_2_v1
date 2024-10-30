@@ -37,7 +37,7 @@ export class FormMaestroComponent implements OnInit, OnChanges {
     cod_maestro: null,
     codigo_moneda: ['GTQ', [Validators.required]],
     descripcion: [, [Validators.required]],
-    monto_ganacia: [0, [Validators.required]],
+    monto_ganancia: [0, [Validators.required]],
     monto_impuesto: [0, [Validators.required]],
     monto_total: [0, [Validators.required]],
     porcentaje_ganancia: [10, [Validators.required]],
@@ -65,13 +65,13 @@ export class FormMaestroComponent implements OnInit, OnChanges {
     }
     this.form.controls['codigo_moneda'].disable()
     this.form.controls['monto_impuesto'].disable()
-    this.form.controls['monto_ganacia'].disable()
+    this.form.controls['monto_ganancia'].disable()
     this.form.controls['monto_total'].disable()
     this.form.controls['gran_total'].disable()
   }
 
   calcularGranTotal(): number {
-    const montoGanancia = Number(this.form.get('monto_ganacia')?.value || 0);
+    const montoGanancia = Number(this.form.get('monto_ganancia')?.value || 0);
     const montoTotal = Number(this.form.get('monto_total')?.value || 0);
     const montoImpuesto = Number(this.form.get('monto_impuesto')?.value || 0);
     const total = ((montoGanancia + montoTotal) - montoImpuesto).toFixed(2);

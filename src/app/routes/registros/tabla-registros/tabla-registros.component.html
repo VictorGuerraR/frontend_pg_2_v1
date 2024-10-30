@@ -17,8 +17,8 @@
       <th pSortableColumn="monto_total">
         Monto <p-sortIcon field="monto_total" />
       </th>
-      <th pSortableColumn="monto_ganacia">
-        Monto Ganancia <p-sortIcon field="monto_ganacia" />
+      <th pSortableColumn="monto_ganancia">
+        Monto Ganancia <p-sortIcon field="monto_ganancia" />
       </th>
       <th pSortableColumn="monto_impuesto">
         Total Impuesto <p-sortIcon field="monto_impuesto" />
@@ -35,7 +35,7 @@
       <td>{{data.descripcion}} </td>
       <td>{{data.codigo_moneda}} </td>
       <td>{{data.monto_total | number:'1.2-2'}} </td>
-      <td>{{data.monto_ganacia | number:'1.2-2'}} </td>
+      <td>{{data.monto_ganancia | number:'1.2-2'}} </td>
       <td>{{data.monto_impuesto | number:'1.2-2'}} </td>
       <td alignFrozen="right" pFrozenColumn [frozen]="true" class="justify-content-center"
         style="display: flex; gap: 0.5rem;">
